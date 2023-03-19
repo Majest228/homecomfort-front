@@ -1,6 +1,6 @@
 import SofaIco from "@/app/components/ui/svg/sofa"
 import React from "react"
-import styles from "./intro.module.scss"
+import styles from "./Intro.module.scss"
 
 const Intro = () => {
   return (
