@@ -1,8 +1,8 @@
 import React from "react"
-import styles from "./ideas.module.scss"
-import IdeaItem from "./idea/idea"
+import styles from "./Concepts.module.scss"
+import ConceptItem from "./concept/ConceptItem"
 
-const Ideas = () => {
+const Concepts = () => {
   return (
     <div className={styles.ideasHome}>
       <div className={styles.ideasHome__content}>
@@ -10,12 +10,12 @@ const Ideas = () => {
           <h3>Идеи для дома</h3>
         </div>
         <div className={styles.ideasHome__content__ideas}>
-          <IdeaItem />
-          <IdeaItem />
+          <ConceptItem />
+          <ConceptItem />
         </div>
       </div>
     </div>
   )
 }
 
-export default Ideas
+export default Concepts

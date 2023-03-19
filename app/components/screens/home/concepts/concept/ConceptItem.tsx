@@ -1,8 +1,9 @@
 import React from "react"
-import styles from "../ideas.module.scss"
+import styles from "../Concepts.module.scss"
 import Image from "next/image"
 import IdeaEx from "../../../../../assets/ideas.jpg"
-const IdeaItem = () => {
+
+const ConceptItem = () => {
   return (
     <div className={styles.ideasHome__content__ideas__item}>
       <div className={styles.ideasHome__content__ideas__item__description}>
@@ -17,4 +18,4 @@ const IdeaItem = () => {
   )
 }
 
-export default IdeaItem
+export default ConceptItem
