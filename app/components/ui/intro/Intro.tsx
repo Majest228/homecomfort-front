@@ -1,6 +1,6 @@
-import SofaIco from "@/app/components/ui/svg/sofa"
 import React from "react"
 import styles from "./Intro.module.scss"
+import SofaIco from "@/app/components/ui/svg/sofa"
 
 const Intro = () => {
   return (
@@ -12,7 +12,6 @@ const Intro = () => {
               <a>Мягкая мебель</a>
             </li>
             <li>
-              {" "}
               <a>Гостинные</a>
             </li>
             <li>

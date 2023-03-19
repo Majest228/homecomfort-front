@@ -1,6 +1,6 @@
 import React from "react"
 import styles from "./Home.module.scss"
-import Intro from "./intro/Intro"
+import Intro from "../../ui/intro/Intro"
 import Concepts from "@/app/components/screens/home/concepts/Concepts"
 import Brands from "@/app/components/screens/home/brands/Brands"
 import Advantages from "@/app/components/screens/home/advantages/Advantages"
