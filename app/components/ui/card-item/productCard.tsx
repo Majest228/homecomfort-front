@@ -2,6 +2,8 @@ import React from "react"
 import styles from "./productCard.module.scss"
 import Image from "next/image"
 import Sofa from "../../../assets/sofa-example.jpg"
+import Comparison from "../svg/comparison"
+import Favorite from "../svg/favorite"
 
 const ProductCard = () => {
   return (
@@ -26,6 +28,26 @@ const ProductCard = () => {
         <div className={styles.ProductCard__content__middle}>
           <div className={styles.ProductCard__content__middle__description}>
             <p>Alia 3-x местный диван, обивка велюр, терракот</p>
+            <div
+              className={
+                styles.ProductCard__content__middle__description__buttons
+              }
+            >
+              <div
+                className={
+                  styles.ProductCard__content__middle__description__buttons__compare
+                }
+              >
+                <Comparison />
+              </div>
+              <div
+                className={
+                  styles.ProductCard__content__middle__description__buttons__favorite
+                }
+              >
+                <Favorite />{" "}
+              </div>
+            </div>
           </div>
         </div>
         <div className={styles.ProductCard__content__bottom}>

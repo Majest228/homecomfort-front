@@ -2,6 +2,7 @@
   margin-top: 60px;
   &__content {
     display: flex;
+    justify-content: space-between;
     &__left {
       display: flex;
       &__main {
