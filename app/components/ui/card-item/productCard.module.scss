@@ -29,9 +29,10 @@
     }
     &__middle {
       margin-bottom: 8px;
+      padding-right: 25px;
+      padding-left: 10px;
       &__description {
         display: flex;
-        padding-right: 20px;
         p {
           font-style: normal;
           font-weight: 400;
@@ -54,6 +55,8 @@
       }
     }
     &__bottom {
+      padding-right: 25px;
+      padding-left: 10px;
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
@@ -84,7 +87,6 @@
           border: none;
           height: 48px;
           width: 76px;
-          margin-right: 20px;
           position: relative;
           cursor: pointer;
           a {
