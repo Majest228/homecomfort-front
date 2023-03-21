@@ -3,9 +3,10 @@
     max-width: 1260px;
     margin: 0 auto;
     &__content {
+      display: flex;
+      margin-top: 50px;
       &__filters {
         &__title {
-          margin-top: 73px;
           display: flex;
           align-items: baseline;
           &__text {
@@ -28,7 +29,6 @@
           justify-content: space-between;
           &__left {
             &__price {
-              margin-top: 40px;
               font-style: normal;
               font-weight: 500;
               font-size: 20px;
@@ -170,6 +170,19 @@
               flex-wrap: wrap;
               align-items: center;
             }
+          }
+        }
+      }
+      &__products {
+        margin-left: 50px;
+        &__sort {
+        }
+        &__items {
+          display: flex;
+          flex-wrap: wrap;
+          &__card {
+            width: 50%;
+            margin-bottom: 50px;
           }
         }
       }

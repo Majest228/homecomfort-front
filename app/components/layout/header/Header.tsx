@@ -11,6 +11,7 @@ import Link from "next/link"
 import Image from "next/image"
 import CatalogIco from "@/app/components/ui/svg/Catalog"
 import HeaderIntro from "@/app/components/layout/header/header-intro/HeaderIntro"
+import AuthForm from "../../ui/auth-form/AuthForm"
 const Header = () => {
   return (
     <header className={styles.header}>
@@ -44,13 +45,7 @@ const Header = () => {
               <Image src={favourite} alt='favourite' />
               <p>Избранное</p>
             </Link>
-            <Link
-              href='/favourite'
-              className={styles.header__content__navigation__login}
-            >
-              <Image src={login} alt='login' />
-              <p>Вход</p>
-            </Link>
+            <AuthForm str={"login"} />
             <Link
               className={styles.header__content__navigation__cart}
               href='/basket'

@@ -63,22 +63,6 @@ const ProductsFilters = () => {
   }, [minValue, maxValue])
   return (
     <div>
-      <div className={styles.ProductList__container__content__filters__title}>
-        <h2
-          className={
-            styles.ProductList__container__content__filters__title__text
-          }
-        >
-          Протеин
-        </h2>
-        <button
-          className={
-            styles.ProductList__container__content__filters__title__refresh
-          }
-        >
-          Сбросить все фильтры
-        </button>
-      </div>
       <div className={styles.ProductList__container__content__filters__content}>
         <div
           className={

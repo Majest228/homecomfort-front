@@ -1,6 +1,6 @@
 import React from "react"
 import CommentItem from "./commentItem/commentItem"
-import CommentSort from "./commentSort/commentSort"
+import CommentSort from "../../../ui/sort/Sort"
 import styles from "./productComment.module.scss"
 
 const ProductComment = () => {

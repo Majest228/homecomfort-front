@@ -1,10 +1,10 @@
 import React from "react"
-import styles from "../productComment.module.scss"
+import styles from "./Sort.module.scss"
 
-const CommentSort = () => {
+const Sort = () => {
   return (
-    <div className={styles.ProductComment__content__sort}>
-      <div className={styles.ProductComment__content__sort__content}>
+    <div className={styles.sort}>
+      <div className={styles.sort__content}>
         <ul>
           <li className={styles.selected}>По популярности</li>
           <li>Новые</li>
@@ -16,4 +16,4 @@ const CommentSort = () => {
   )
 }
 
-export default CommentSort
+export default Sort
