@@ -12,6 +12,7 @@ import Image from "next/image"
 import CatalogIco from "@/app/components/ui/svg/Catalog"
 import HeaderIntro from "@/app/components/layout/header/header-intro/HeaderIntro"
 import AuthForm from "../../ui/auth-form/AuthForm"
+import Basket from "../../ui/basket/basket"
 const Header = () => {
   return (
     <header className={styles.header}>
@@ -46,13 +47,14 @@ const Header = () => {
               <p>Избранное</p>
             </Link>
             <AuthForm str={"login"} />
-            <Link
+            <Basket />
+            {/* <Link
               className={styles.header__content__navigation__cart}
               href='/basket'
             >
               <Image src={cart} alt='favourite' />
               <p>Корзина</p>
-            </Link>
+            </Link> */}
           </div>
         </div>
       </div>

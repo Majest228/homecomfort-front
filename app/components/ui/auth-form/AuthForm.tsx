@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form"
 import { validEmail } from "./auth.valid"
 import Image from "next/image"
 import login from "../../../assets/login.svg"
+import LoginIco from "../svg/login"
 
 const AuthForm = ({ str }: any) => {
   const [type, setType] = useState<"login" | "register">(str)
@@ -54,7 +55,7 @@ const AuthForm = ({ str }: any) => {
     <div className={styles.auth__wrapper}>
       {str == "login" ? (
         <div onClick={() => setIsShow(!isShow)} className={styles.auth__login}>
-          <Image src={login} alt='login' />
+          <LoginIco />
           <p>Вход</p>
         </div>
       ) : (
