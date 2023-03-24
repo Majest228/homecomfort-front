@@ -1,0 +1,88 @@
+.ProfilePage {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  &__container {
+    max-width: 1260px;
+    margin: 0 auto;
+    &__content {
+      &__title {
+        margin-bottom: 20px;
+        p {
+          font-weight: 500;
+          font-size: 46px;
+          line-height: 130%;
+          color: #1a1a1a;
+        }
+      }
+      &__links {
+        margin-bottom: 40px;
+        ul {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          display: flex;
+          li {
+            margin-right: 40px;
+            a {
+              text-decoration: none;
+              color: #1a1a1a;
+              font-weight: 400;
+              font-size: 20px;
+              line-height: 130%;
+              color: #1a1a1a;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+      &__form {
+        form {
+          display: flex;
+          justify-content: space-between;
+        }
+        &__left {
+          width: 45%;
+        }
+        &__right {
+          width: 45%;
+        }
+        &__personal {
+          margin-bottom: 20px;
+          p {
+            font-weight: 500;
+            font-size: 30px;
+            line-height: 130%;
+            color: #1a1a1a;
+          }
+        }
+        &__input {
+          margin-bottom: 30px;
+          input {
+            width: 100%;
+            border: 2px solid #005bcc;
+            border-radius: 12px;
+            padding: 15px;
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 130%;
+            color: #1a1a1a;
+          }
+        }
+        &__submit {
+          text-align: right;
+          button {
+            border: none;
+            color: #005bcc;
+            background-color: #e0eeff;
+            border-radius: 12px;
+            padding: 10px 20px;
+            font-weight: 700;
+            font-size: 18px;
+            line-height: 130%;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}
