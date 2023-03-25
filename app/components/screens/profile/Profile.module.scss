@@ -83,6 +83,21 @@
           }
         }
       }
+      &__orders {
+        &__order {
+          a {
+            font-weight: 500;
+            font-size: 36px;
+            line-height: 130%;
+            color: #005bcc;
+            text-decoration: none;
+          }
+        }
+      }
+      &__favorites {
+        display: flex;
+        flex-wrap: wrap;
+      }
     }
   }
 }

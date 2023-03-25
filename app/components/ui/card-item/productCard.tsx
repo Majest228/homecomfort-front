@@ -5,7 +5,7 @@ import Sofa from "../../../assets/sofa-example.jpg"
 import Comparison from "../svg/comparison"
 import Favorite from "../svg/favorite"
 
-const ProductCard = () => {
+const ProductCard = ({ favorite = false }) => {
   return (
     <div className={styles.ProductCard}>
       <div className={styles.ProductCard__content}>
@@ -45,7 +45,7 @@ const ProductCard = () => {
                   styles.ProductCard__content__middle__description__buttons__favorite
                 }
               >
-                <Favorite />{" "}
+                <Favorite fillInner={favorite ? "red" : "none"} />
               </div>
             </div>
           </div>

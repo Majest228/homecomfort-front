@@ -10,7 +10,7 @@ const Products = ({ title }: any) => {
           <h3>{title}</h3>
         </div>
         <div className={styles.producstHome__content__products}>
-          <ProductCard />
+          <ProductCard favorite={true} />
           <ProductCard />
           <ProductCard />
         </div>

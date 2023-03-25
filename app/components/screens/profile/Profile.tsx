@@ -1,6 +1,6 @@
-import Link from "next/link"
 import React from "react"
 import styles from "./Profile.module.scss"
+import ProfileLinks from "./profileLinks/profileLinks"
 
 const ProfilePage = () => {
   return (
@@ -10,19 +10,7 @@ const ProfilePage = () => {
           <div className={styles.ProfilePage__container__content__title}>
             <p>Изменение профиля</p>
           </div>
-          <div className={styles.ProfilePage__container__content__links}>
-            <ul>
-              <li>
-                <Link href='/profile/change'>Профиль</Link>
-              </li>
-              <li>
-                <Link href='/profile/orders'>Заказы</Link>
-              </li>
-              <li>
-                <Link href='/profile/favorite'>Избранное</Link>
-              </li>
-            </ul>
-          </div>
+          <ProfileLinks />
           <div className={styles.ProfilePage__container__content__form}>
             <form>
               <div
