@@ -98,6 +98,101 @@
         display: flex;
         flex-wrap: wrap;
       }
+      &__order {
+        &__title {
+          p {
+            font-weight: 500;
+            font-size: 46px;
+            line-height: 130%;
+            color: #1a1a1a;
+          }
+        }
+        &__content {
+          margin-top: 20px;
+          border: 2px solid #005bcc;
+          padding: 20px;
+          border-radius: 20px;
+          &__status {
+            display: flex;
+            p {
+              font-weight: 500;
+              line-height: 130%;
+            }
+            &__sending {
+              color: #1a1a1a;
+              font-size: 26px;
+
+              a {
+                color: #005bcc;
+              }
+            }
+            &__date {
+              margin-left: 20px;
+              color: #005bcc;
+              font-size: 16px;
+              margin-bottom: 3px;
+              margin-top: 10px;
+            }
+          }
+          &__items {
+          }
+          &__product {
+            margin-top: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #1a1a1a;
+            &__left {
+              display: flex;
+              align-items: center;
+              height: 100px;
+              &__img {
+                img {
+                  object-fit: contain;
+                  width: 195px;
+                  height: 195px;
+                  overflow: hidden;
+                }
+              }
+              &__description {
+                text-align: left;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 150%;
+                color: #545454;
+                &__title {
+                }
+                &__discount {
+                  color: #005bcc;
+                }
+              }
+            }
+            &__middle {
+              width: 20%;
+              &__title {
+                p {
+                  font-weight: 400;
+                  font-size: 16px;
+                  line-height: 150%;
+                  color: #545454;
+                }
+              }
+            }
+            &__right {
+            }
+          }
+          &__amount {
+            text-align: right;
+            margin-top: 40px;
+            p {
+              font-weight: 500;
+              font-size: 26px;
+              line-height: 130%;
+              color: #005bcc;
+            }
+          }
+        }
+      }
     }
   }
 }
