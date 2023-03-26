@@ -1,11 +1,17 @@
 import "@/styles/globals.scss"
 import type { AppProps } from "next/app"
 import Layout from "@/app/components/layout/Layout"
-
+import { Provider } from "react-redux"
+import store, { persistor } from "@/app/store"
+import { PersistGate } from "redux-persist/integration/react"
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </PersistGate>
+    </Provider>
   )
 }

@@ -1,11 +1,29 @@
-import React from "react"
+import React, { useState } from "react"
 import styles from "./productCard.module.scss"
 import Image from "next/image"
 import Sofa from "../../../assets/sofa-example.jpg"
 import Comparison from "../svg/comparison"
 import Favorite from "../svg/favorite"
+import { useAppDispatch } from "@/app/hook/hook"
+import { toggleFavorite } from "@/app/store/favorite/favorite.slice"
 
-const ProductCard = ({ favorite = false }) => {
+const ProductCard = ({
+  id = 0,
+  favorite = false,
+  discount = 0,
+  description = "",
+  price = 0,
+}) => {
+  const [getFavorite, setFavorite] = useState(favorite)
+  const action = {
+    id,
+    favorite,
+    discount,
+    description,
+    price,
+  }
+  const dispatch = useAppDispatch()
+
   return (
     <div className={styles.ProductCard}>
       <div className={styles.ProductCard__content}>
@@ -18,7 +36,7 @@ const ProductCard = ({ favorite = false }) => {
               <p>Новинка</p>
             </div>
             <div className={styles.ProductCard__content__top__status__value}>
-              <p>-25%</p>
+              <p>-{discount}%</p>
             </div>
           </div>
           <div className={styles.ProductCard__content__top__img}>
@@ -27,7 +45,7 @@ const ProductCard = ({ favorite = false }) => {
         </div>
         <div className={styles.ProductCard__content__middle}>
           <div className={styles.ProductCard__content__middle__description}>
-            <p>Alia 3-x местный диван, обивка велюр, терракот</p>
+            <p>{description}</p>
             <div
               className={
                 styles.ProductCard__content__middle__description__buttons
@@ -44,8 +62,12 @@ const ProductCard = ({ favorite = false }) => {
                 className={
                   styles.ProductCard__content__middle__description__buttons__favorite
                 }
+                onClick={() => {
+                  dispatch(toggleFavorite(action))
+                  setFavorite(!getFavorite)
+                }}
               >
-                <Favorite fillInner={favorite ? "red" : "none"} />
+                <Favorite fillInner={getFavorite ? "red" : "none"} />
               </div>
             </div>
           </div>
@@ -55,12 +77,12 @@ const ProductCard = ({ favorite = false }) => {
             <div
               className={styles.ProductCard__content__bottom__price__discount}
             >
-              <p>6850тг</p>
+              <p>{Math.trunc(price * ((100 - discount) / 100))}тг</p>
             </div>
             <div
               className={styles.ProductCard__content__bottom__price__nodiscount}
             >
-              <p>8560тг</p>
+              <p>{price}тг</p>
             </div>
           </div>
           <div className={styles.ProductCard__content__bottom__add}>

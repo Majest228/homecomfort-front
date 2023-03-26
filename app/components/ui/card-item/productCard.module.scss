@@ -35,6 +35,7 @@
       padding-left: 10px;
       &__description {
         display: flex;
+        justify-content: space-between;
         p {
           font-style: normal;
           font-weight: 400;

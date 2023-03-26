@@ -34,14 +34,14 @@ const Header = () => {
           <div className={styles.header__content__navigation}>
             <Link
               className={styles.header__content__navigation__comparison}
-              href='/favourite'
+              href='/profile/change'
             >
               <Image src={comparison} alt='comparison' />
               <p>Сравнение</p>
             </Link>
             <Link
               className={styles.header__content__navigation__favourite}
-              href='/favourite'
+              href='/profile/favorite'
             >
               <Image src={favourite} alt='favourite' />
               <p>Избранное</p>

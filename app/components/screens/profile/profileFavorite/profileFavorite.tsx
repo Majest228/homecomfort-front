@@ -2,8 +2,9 @@ import React from "react"
 import ProfileLinks from "../profileLinks/profileLinks"
 import styles from "../Profile.module.scss"
 import ProductCard from "@/app/components/ui/card-item/productCard"
-
+import { useAppSelector } from "@/app/hook/hook"
 const ProfileFavorite = () => {
+  const { favorite } = useAppSelector((state) => state.favorites)
   return (
     <div className={styles.ProfilePage}>
       <div className={styles.ProfilePage__container}>
@@ -13,11 +14,15 @@ const ProfileFavorite = () => {
           </div>
           <ProfileLinks />
           <div className={styles.ProfilePage__container__content__favorites}>
-            <ProductCard favorite={true} />
-            <ProductCard favorite={true} />
-            <ProductCard favorite={true} />
-            <ProductCard favorite={true} />
-            <ProductCard favorite={true} />
+            {favorite.map((item: any) => (
+              <ProductCard
+                id={item.id}
+                description={item.description}
+                discount={item.discount}
+                favorite={true}
+                price={item.price}
+              />
+            ))}
           </div>
         </div>
       </div>
