@@ -15,13 +15,15 @@ const Products = ({ title }: any) => {
           <h3>{title}</h3>
         </div>
         <div className={styles.producstHome__content__products}>
-          <ProductCard
-            id={1}
-            description={"Хороший диван"}
-            discount={20}
-            price={8000}
-            favorite={favoriteId.indexOf(1) > -1 ? true : false}
-          />
+          <div className={styles.producstHome__content__products__product}>
+            <ProductCard
+              id={1}
+              description={"Хороший диван"}
+              discount={20}
+              price={8000}
+              favorite={favoriteId.indexOf(1) > -1 ? true : false}
+            />
+          </div>
           <ProductCard
             id={2}
             description={"Жесткий диван"}

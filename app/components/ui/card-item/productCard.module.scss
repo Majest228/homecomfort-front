@@ -1,8 +1,9 @@
 .ProductCard {
-  width: 33.3333%;
   margin-bottom: 40px;
   &__content {
-    max-width: 400px;
+    min-width: 375px;
+    width: 375px;
+    margin-right: 30px;
     &__top {
       cursor: pointer;
       position: relative;
@@ -58,7 +59,7 @@
       }
     }
     &__bottom {
-      padding-right: 25px;
+      padding-right: 22px;
       padding-left: 10px;
       display: flex;
       justify-content: space-between;

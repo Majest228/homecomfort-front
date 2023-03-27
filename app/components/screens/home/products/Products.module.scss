@@ -13,6 +13,10 @@
     &__products {
       display: flex;
       flex-wrap: wrap;
+      justify-content: center;
+      &__product {
+        width: 35%;
+      }
     }
   }
   margin-bottom: 20px;

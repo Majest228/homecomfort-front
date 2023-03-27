@@ -14,6 +14,10 @@ const ProductDesc = () => {
             <ProductColumn />
             <ProductColumn />
             <ProductColumn />
+            <ProductColumn />
+            <ProductColumn />
+            <ProductColumn />
+            <ProductColumn />
           </div>
         </div>
       </div>
