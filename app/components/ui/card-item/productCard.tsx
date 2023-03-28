@@ -6,13 +6,16 @@ import Comparison from "../svg/comparison"
 import Favorite from "../svg/favorite"
 import { useAppDispatch } from "@/app/hook/hook"
 import { toggleFavorite } from "@/app/store/favorite/favorite.slice"
+import { useRouter } from "next/router"
+import Link from "next/link"
 
 const ProductCard = ({
-  id = 0,
+  id,
   favorite = false,
   discount = 0,
-  description = "Описание",
-  price = 0,
+  description = "Alia 3-x местный диван, обивка велюр, терракот",
+  title,
+  price
 }) => {
   const [getFavorite, setFavorite] = useState(favorite)
   const action = {
@@ -24,8 +27,9 @@ const ProductCard = ({
   }
   const dispatch = useAppDispatch()
 
+
   return (
-    <div className={styles.ProductCard}>
+    <Link href={`products/product/${id}`} className={styles.ProductCard}>
       <div className={styles.ProductCard__content}>
         <div className={styles.ProductCard__content__top}>
           <div className={styles.ProductCard__content__top__status}>
@@ -44,6 +48,7 @@ const ProductCard = ({
           </div>
         </div>
         <div className={styles.ProductCard__content__middle}>
+          <h3>{title}</h3>
           <div className={styles.ProductCard__content__middle__description}>
             <p>{description}</p>
             <div
@@ -92,7 +97,7 @@ const ProductCard = ({
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   )
 }
 

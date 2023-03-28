@@ -1,13 +1,19 @@
 import ProductCard from "@/app/components/ui/card-item/productCard"
-import React from "react"
+import React, { useEffect } from "react"
 import styles from "./Products.module.scss"
 import { useAppSelector } from "@/app/hook/hook"
+import { useQuery } from "@tanstack/react-query"
+import { ProductService } from "@/app/services/product/product.service"
+import apiAxios from "@/app/api/api.interceptor"
+import { useRouter } from "next/router"
 
-const Products = ({ title }: any) => {
+const Products = ({ title, products }: any) => {
   const { favorite } = useAppSelector((state) => state.favorites)
   const favoriteId = []
   favorite.forEach((item: any) => favoriteId.push(item.id))
   console.log(favoriteId)
+
+
   return (
     <div className={styles.producstHome}>
       <div className={styles.producstHome__content}>
@@ -15,32 +21,10 @@ const Products = ({ title }: any) => {
           <h3>{title}</h3>
         </div>
         <div className={styles.producstHome__content__products}>
-          <div className={styles.producstHome__content__products__product}>
-            <ProductCard
-              id={1}
-              description={"Хороший диван"}
-              discount={20}
-              price={8000}
-              favorite={favoriteId.indexOf(1) > -1 ? true : false}
-            />
-          </div>
-          <ProductCard
-            id={2}
-            description={"Жесткий диван"}
-            discount={20}
-            price={8000}
-            favorite={favoriteId.indexOf(2) > -1 ? true : false}
-          />
-          <ProductCard
-            id={3}
-            description={"Опасный диван"}
-            discount={20}
-            price={8000}
-            favorite={favoriteId.indexOf(3) > -1 ? true : false}
-          />
+          {products.slice(0, 3).map(product => <ProductCard key={product.id} id={product.id} title={product.title} price={product.price} />)}
         </div>
       </div>
-    </div>
+    </div >
   )
 }
 

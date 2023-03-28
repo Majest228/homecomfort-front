@@ -2,16 +2,31 @@ import "@/styles/globals.scss"
 import type { AppProps } from "next/app"
 import Layout from "@/app/components/layout/Layout"
 import { Provider } from "react-redux"
-import store, { persistor } from "@/app/store"
 import { PersistGate } from "redux-persist/integration/react"
-export default function App({ Component, pageProps }: AppProps) {
+import store, { persistor } from "../app/store/store"
+
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query"
+import AuthProvider from "@/app/providers/AuthProvider"
+import { TypeComponentAuthFields } from "@/app/providers/private.route.interface"
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: { refetchOnWindowFocus: false },
+  },
+})
+
+export default function App({ Component, pageProps }: AppProps & TypeComponentAuthFields) {
   return (
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </PersistGate>
-    </Provider>
+    <QueryClientProvider client={queryClient}>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <AuthProvider Component={{ isOnlyUser: Component.isOnlyUser }}>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </AuthProvider>
+        </PersistGate>
+      </Provider>
+    </QueryClientProvider>
   )
 }

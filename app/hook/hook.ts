@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector, TypedUseSelectorHook } from "react-redux"
-import type { RootState, AppDispatch } from "../store"
+import type { RootState, AppDispatch } from "../store/store"
 
 export const useOnClickOutside = (ref: any, handler: any) => {
   useEffect(() => {

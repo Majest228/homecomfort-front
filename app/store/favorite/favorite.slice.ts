@@ -8,6 +8,7 @@ const favoriteSlice = createSlice({
   reducers: {
     toggleFavorite(state, action) {
       let checked = false
+
       state.favorite.forEach((item: any) => {
         if (item.id == action.payload.id) checked = true
         console.log(checked)

@@ -8,16 +8,20 @@
         line-height: 130%;
         color: #1a1a1a;
       }
+
       margin-bottom: 65px;
     }
+
     &__products {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
+      justify-content: space-between;
+
       &__product {
         width: 35%;
       }
     }
   }
+
   margin-bottom: 20px;
 }

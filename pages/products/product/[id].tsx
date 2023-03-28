@@ -1,0 +1,48 @@
+import React from 'react'
+import Product from '@/app/components/screens/product/ProductPage'
+import { GetStaticPaths, GetStaticProps } from 'next'
+import apiAxios from '@/app/api/api.interceptor'
+
+const ProductPage = ({ product }: any) => {
+  return (
+    <Product product={product} />
+  )
+}
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  try {
+    const { data: products } = await apiAxios.get('product/all')
+
+    const paths = products.map((product: any) => ({
+      params: {
+        id: String(product.id)
+      }
+    }))
+
+    return { paths, fallback: "blocking" }
+  } catch (e) {
+    return {
+      paths: [], fallback: false
+    }
+  }
+}
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  try {
+    const { data: product } = await apiAxios.get(`product/by/${params?.id}`)
+    return {
+      props: {
+        product
+      },
+      revalidate: 60
+    }
+  } catch (e) {
+    return {
+      props: {
+        user: {},
+        error: e
+      }
+    }
+  }
+}
+export default ProductPage

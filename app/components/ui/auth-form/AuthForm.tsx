@@ -3,18 +3,24 @@ import React, { FC, useEffect, useRef, useState, forwardRef } from "react"
 import Field from "../field/Field"
 import { IAuthForm } from "./auth-form.interface"
 import styles from "./AuthForm.module.scss"
-import { useForm } from "react-hook-form"
+import { SubmitHandler, useForm } from "react-hook-form"
 import { validEmail } from "./auth.valid"
-import Image from "next/image"
-import login from "../../../assets/login.svg"
 import LoginIco from "../svg/login"
+import { useAction } from "@/app/hook/useAction"
 
-const AuthForm = ({ str }: any) => {
-  const [type, setType] = useState<"login" | "register">(str)
+const AuthForm = () => {
+  const [type, setType] = useState("login")
   const [isShow, setIsShow] = useState(false)
+  const { register: registerAuth, login } = useAction()
+
 
   const escape = useRef<HTMLElement>(null)
   const outside = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    console.log(type)
+  }, [type])
+
 
   const handleEscape = (event: any) => {
     if (event.keyCode == 27) setIsShow(false)
@@ -31,6 +37,7 @@ const AuthForm = ({ str }: any) => {
     defaultValues: {
       email: "",
       password: "",
+      login: ""
     },
     mode: "onChange",
   })
@@ -42,40 +49,27 @@ const AuthForm = ({ str }: any) => {
     }
   }, [handleEscape, isShow])
 
-  // const onSubmit: SubmitHandler<IAuthForm> = async (values) => {
-  //   if (type == "register") {
-  //     registerAction(values)
-  //     setIsShow(false)
-  //   } else {
-  //     login(values)
-  //     setIsShow(false)
-  //   }
-  // }
+  const onSubmit: SubmitHandler<IAuthForm> = async (values) => {
+    if (type == "register") {
+      registerAuth(values)
+      setIsShow(false)
+    } else {
+      login(values)
+      setIsShow(false)
+    }
+  }
+
   return (
     <div className={styles.auth__wrapper}>
-      {str == "login" ? (
-        <div onClick={() => setIsShow(!isShow)} className={styles.auth__login}>
-          <LoginIco />
-          <p>Вход</p>
-        </div>
-      ) : (
-        // <button
-        //   onClick={() => setIsShow(!isShow)}
-        //   className={styles.auth__register}
-        // >
-        //   Регистрация
-        // </button>
-        <button
-          onClick={() => setIsShow(!isShow)}
-          className={styles.auth__login}
-        >
-          Зарегистрироваться
-        </button>
-      )}
+      <div onClick={() => setIsShow(!isShow)} className={styles.auth__login}>
+        <LoginIco />
+        <p>Вход</p>
+      </div>
 
       {isShow && (
         <div className={styles.auth__modal} ref={escape}>
-          <form className={styles.auth__form} ref={outside}>
+          <form className={styles.auth__form} ref={outside} onSubmit={handleSubmit(onSubmit)
+          }>
             {type === "register" ? (
               <h3 className={styles.auth__form__title}>Регистрация</h3>
             ) : type == "login" ? (
@@ -95,6 +89,15 @@ const AuthForm = ({ str }: any) => {
               placeholder='antonanton@gmail.com'
               error={errors.email}
               label='Электронная почта  *'
+              autoComplete='off'
+            />
+            <Field
+              {...register("login", {
+                required: "Login required",
+              })}
+              placeholder='Majest228'
+              error={errors.email}
+              label='Login  *'
               autoComplete='off'
             />
             <Field
