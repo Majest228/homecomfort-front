@@ -10,14 +10,15 @@ const Products = dynamic(() => import("./products/Products"), {
   ssr: false,
 })
 
-const HomePage = () => {
+const HomePage = ({ products }) => {
+  console.log(products, "prod")
   return (
     <div className={styles.home}>
       <div className={styles.home__container}>
         <Intro />
-        <Products title='Хит продажи' />
+        <Products products={products} title='Хит продажи' />
         <Concepts />
-        <Products title='Новинки' />
+        <Products products={products} title='Новинки' />
         <Advantages />
         <Brands />
         <div className={styles.home__desc}>

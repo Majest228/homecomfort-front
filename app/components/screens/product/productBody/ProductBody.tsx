@@ -6,10 +6,10 @@ import Comparison from "@/app/components/ui/svg/comparison"
 import Favorite from "@/app/components/ui/svg/favorite"
 import Star from "@/app/components/ui/svg/star"
 
-const ProductBody = () => {
+const ProductBody = ({ product, isLoading }) => {
   const stars = ["star", "star", "star", "star", "star"]
   const rating = 4
-
+  console.log(isLoading ? "" : product)
   return (
     <div className={styles.ProductBody}>
       <div className={styles.ProductBody__content}>
@@ -32,7 +32,7 @@ const ProductBody = () => {
                 }
               >
                 <p>
-                  <a>Артикул:</a> 00000012880
+                  <a>Артикул:</a> {isLoading ? "" : product.articul}
                 </p>
               </div>
               <div
