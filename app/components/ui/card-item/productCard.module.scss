@@ -34,7 +34,8 @@
         }
       }
 
-      &__img {}
+      &__img {
+      }
     }
 
     &__middle {
@@ -47,7 +48,7 @@
         font-weight: 600;
         font-size: 24px;
         line-height: 130%;
-        color: #1A1A1A;
+        color: #1a1a1a;
       }
 
       &__description {
@@ -74,7 +75,8 @@
             margin-right: 19px;
           }
 
-          &__favorite {}
+          &__favorite {
+          }
         }
       }
     }
@@ -111,6 +113,7 @@
       }
 
       &__add {
+        transition: all 0.5s;
         button {
           background: #ccf5d5;
           border-radius: 12px;
@@ -119,7 +122,6 @@
           width: 76px;
           position: relative;
           cursor: pointer;
-
           a {
             &::after {
               content: "";
@@ -132,7 +134,6 @@
               background: #00cc2d;
               border-radius: 12px;
             }
-
             &::before {
               content: "";
               position: absolute;
@@ -142,6 +143,46 @@
               height: 3px;
               width: 20px;
               background: #00cc2d;
+              border-radius: 12px;
+            }
+          }
+        }
+      }
+      &__remove {
+        transition: all 0.5s;
+        button {
+          background: #e0eeff;
+          border-radius: 12px;
+          border: none;
+          height: 48px;
+          width: 76px;
+          position: relative;
+          cursor: pointer;
+
+          a {
+            &::after {
+              content: "";
+              position: absolute;
+              top: 30%;
+              left: 48%;
+              transform: translate(-50%, -50%);
+              transform: rotate(-45deg);
+              height: 20px;
+              width: 3px;
+              background: #005bcc;
+              border-radius: 12px;
+            }
+
+            &::before {
+              content: "";
+              position: absolute;
+              top: 46%;
+              left: 38%;
+              transform: translate(-50%, -50%);
+              transform: rotate(-45deg);
+              height: 3px;
+              width: 20px;
+              background: #005bcc;
               border-radius: 12px;
             }
           }

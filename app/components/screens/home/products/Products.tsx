@@ -9,10 +9,11 @@ import { useRouter } from "next/router"
 
 const Products = ({ title, products }: any) => {
   const { favorite } = useAppSelector((state) => state.favorites)
-  const favoriteId = []
+  const { basket } = useAppSelector((state) => state.basket)
+  const favoriteId: any = []
+  const basketId: any = []
   favorite.forEach((item: any) => favoriteId.push(item.id))
-  console.log(favoriteId)
-
+  basket.forEach((item: any) => basketId.push(item.id))
 
   return (
     <div className={styles.producstHome}>
@@ -21,10 +22,18 @@ const Products = ({ title, products }: any) => {
           <h3>{title}</h3>
         </div>
         <div className={styles.producstHome__content__products}>
-          {products.slice(0, 3).map(product => <ProductCard key={product.id} id={product.id} title={product.title} price={product.price} />)}
+          {products.slice(0, 3).map((product) => (
+            <ProductCard
+              favorite={favoriteId.indexOf(product.id) > -1 ? true : false}
+              key={product.id}
+              id={product.id}
+              title={product.title}
+              price={product.price}
+            />
+          ))}
         </div>
       </div>
-    </div >
+    </div>
   )
 }
 

@@ -5,6 +5,8 @@ import ProductCard from "@/app/components/ui/card-item/productCard"
 import { useAppSelector } from "@/app/hook/hook"
 const ProfileFavorite = () => {
   const { favorite } = useAppSelector((state) => state.favorites)
+  const favoriteId: any = []
+  favorite.forEach((item: any) => favoriteId.push(item.id))
   return (
     <div className={styles.ProfilePage}>
       <div className={styles.ProfilePage__container}>
@@ -19,7 +21,7 @@ const ProfileFavorite = () => {
                 id={item.id}
                 description={item.description}
                 discount={item.discount}
-                favorite={true}
+                favorite={favoriteId.indexOf(item.id) > -1 ? true : false}
                 price={item.price}
               />
             ))}
