@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react"
-import { useOnClickOutside } from "@/app/hook/hook"
+import { useAppSelector, useOnClickOutside } from "@/app/hook/hook"
 import styles from "./basket.module.scss"
 import CartIco from "../svg/cart"
 import BasketItem from "./basketItem/basketItem"
@@ -20,6 +20,12 @@ const Basket = () => {
       document.addEventListener("keydown", handleEscape, false)
     }
   }, [handleEscape, isShow])
+
+  const { basket } = useAppSelector((state) => state.basket)
+  const summ = basket.reduce(
+    (acc, product) => acc + product.price * product.count,
+    0
+  )
   return (
     <div className={styles.basket__wrapper}>
       <div onClick={() => setIsShow(!isShow)} className={styles.basket__open}>
@@ -33,13 +39,19 @@ const Basket = () => {
               <p>Корзина заказов</p>
             </div>
             <div className={styles.basket__form__products}>
-              <BasketItem />
-              <BasketItem />
-              <BasketItem />
+              {basket.map((item) => (
+                <BasketItem
+                  id={item.id}
+                  description={item.description}
+                  discount={item.discount}
+                  price={item.price}
+                  count={item.count}
+                />
+              ))}
             </div>
             <div className={styles.basket__form__ordering}>
               <div className={styles.basket__form__ordering__price}>
-                <p>35990тг</p>
+                <p>{summ}тг</p>
               </div>
               <div className={styles.basket__form__ordering__sumbit}>
                 <button>Оформить заказ</button>

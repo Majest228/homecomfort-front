@@ -123,6 +123,7 @@
           position: relative;
           cursor: pointer;
           a {
+            transition: all 0.5s;
             &::after {
               content: "";
               position: absolute;
@@ -133,6 +134,7 @@
               width: 3px;
               background: #00cc2d;
               border-radius: 12px;
+              transition: all 0.1s;
             }
             &::before {
               content: "";
@@ -144,6 +146,7 @@
               width: 20px;
               background: #00cc2d;
               border-radius: 12px;
+              transition: all 0.1s;
             }
           }
         }
@@ -171,6 +174,7 @@
               width: 3px;
               background: #005bcc;
               border-radius: 12px;
+              transition: all 0.1s;
             }
 
             &::before {
@@ -184,6 +188,7 @@
               width: 20px;
               background: #005bcc;
               border-radius: 12px;
+              transition: all 0.1s;
             }
           }
         }

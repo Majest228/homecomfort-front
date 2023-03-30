@@ -34,7 +34,7 @@ const Header = () => {
           <div className={styles.header__content__navigation}>
             <Link
               className={styles.header__content__navigation__comparison}
-              href='/profile/change'
+              href='/compare'
             >
               <Image src={comparison} alt='comparison' />
               <p>Сравнение</p>

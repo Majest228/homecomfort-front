@@ -1,9 +1,32 @@
-import React from "react"
+import React, { useState } from "react"
 import styles from "../basket.module.scss"
 import Product from "../../../../assets/productItem.jpg"
 import Image from "next/image"
 import Trash from "../../svg/trash"
-const BasketItem = () => {
+import { useAppDispatch } from "@/app/hook/hook"
+import {
+  changeCount,
+  plusCount,
+  minusCount,
+  toggleBasket,
+} from "@/app/store/basket/basket.slice"
+const BasketItem = ({ id, description, discount, price, count }: any) => {
+  const dispatch = useAppDispatch()
+  const min = 1
+  const max = 100
+
+  const [value, setValue] = useState(count)
+
+  const handleChange = (val) => {
+    const value = Math.max(min, Math.min(max, Number(val)))
+    dispatch(
+      changeCount({
+        id,
+        value: +value,
+      })
+    )
+    setValue(value)
+  }
   return (
     <div className={styles.basket__form__products__product}>
       <div className={styles.basket__form__products__product__left}>
@@ -18,21 +41,21 @@ const BasketItem = () => {
               styles.basket__form__products__product__left__description__title
             }
           >
-            Alia 3-x местный диван, обивка велюр, терракот
+            {description}
           </p>
           <p
             className={
               styles.basket__form__products__product__left__description__discount
             }
           >
-            Скидка: 14%
+            Скидка: {discount}%
           </p>
           <p
             className={
               styles.basket__form__products__product__left__description__price
             }
           >
-            Цена: 29990тг.
+            Цена: {Math.trunc(price * ((100 - discount) / 100))}тг.
           </p>
         </div>
       </div>
@@ -46,21 +69,44 @@ const BasketItem = () => {
               styles.basket__form__products__product__center__count__change
             }
           >
-            <button>-</button>
+            <button
+              onClick={() => {
+                dispatch(plusCount({ id }))
+                handleChange(value - 1)
+              }}
+            >
+              -
+            </button>
           </div>
           <div
             className={
               styles.basket__form__products__product__center__count__value
             }
           >
-            <input type='text' defaultValue={1} />
+            <input
+              type='number'
+              min={"1"}
+              max={"100"}
+              value={value}
+              defaultValue={count}
+              onChange={(e) => {
+                handleChange(e.target.value)
+              }}
+            />
           </div>
           <div
             className={
               styles.basket__form__products__product__center__count__change
             }
           >
-            <button>+</button>
+            <button
+              onClick={() => {
+                dispatch(plusCount({ id }))
+                handleChange(value + 1)
+              }}
+            >
+              +
+            </button>
           </div>
         </div>
       </div>
@@ -79,17 +125,20 @@ const BasketItem = () => {
               styles.basket__form__products__product__right__price__usually
             }
           >
-            34990тг
+            {price}тг
           </p>
           <p
             className={
               styles.basket__form__products__product__right__price__discount
             }
           >
-            29990тг
+            {Math.trunc(price * ((100 - discount) / 100))}тг
           </p>
         </div>
-        <div className={styles.basket__form__products__product__right__delete}>
+        <div
+          className={styles.basket__form__products__product__right__delete}
+          onClick={() => dispatch(toggleBasket({ id }))}
+        >
           <Trash fill={"#005bcc"} />
         </div>
       </div>

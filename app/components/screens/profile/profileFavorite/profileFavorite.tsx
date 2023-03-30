@@ -4,9 +4,9 @@ import styles from "../Profile.module.scss"
 import ProductCard from "@/app/components/ui/card-item/productCard"
 import { useAppSelector } from "@/app/hook/hook"
 const ProfileFavorite = () => {
+  const { compare } = useAppSelector((state) => state.compare)
   const { favorite } = useAppSelector((state) => state.favorites)
-  const favoriteId: any = []
-  favorite.forEach((item: any) => favoriteId.push(item.id))
+  const { basket } = useAppSelector((state) => state.basket)
   return (
     <div className={styles.ProfilePage}>
       <div className={styles.ProfilePage__container}>
@@ -21,8 +21,12 @@ const ProfileFavorite = () => {
                 id={item.id}
                 description={item.description}
                 discount={item.discount}
-                favorite={favoriteId.indexOf(item.id) > -1 ? true : false}
                 price={item.price}
+                favorite={favorite.some(
+                  (product: any) => item.id == product.id
+                )}
+                compare={compare.some((product: any) => item.id == product.id)}
+                basket={basket.some((product: any) => item.id == product.id)}
               />
             ))}
           </div>

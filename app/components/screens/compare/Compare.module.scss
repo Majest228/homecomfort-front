@@ -17,7 +17,8 @@
         display: flex;
         overflow-x: scroll;
         &__item {
-          width: 100%;
+          width: 31%;
+          margin-right: 30px;
           &__column {
             display: flex;
             justify-content: space-between;

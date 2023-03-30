@@ -9,6 +9,7 @@ import { toggleFavorite } from "@/app/store/favorite/favorite.slice"
 import { toggleBasket } from "@/app/store/basket/basket.slice"
 import { useRouter } from "next/router"
 import Link from "next/link"
+import { toggleCompare } from "@/app/store/compare/compare.slice"
 
 const ProductCard = ({
   id,
@@ -18,9 +19,11 @@ const ProductCard = ({
   description = "Alia 3-x местный диван, обивка велюр, терракот",
   title,
   price,
+  compare,
 }) => {
   const [getFavorite, setFavorite] = useState(favorite)
   const [getBasket, setBasket] = useState(basket)
+  const [getCompare, setCompare] = useState(compare)
   const action = {
     id,
     favorite,
@@ -29,6 +32,8 @@ const ProductCard = ({
     description,
     price,
     title,
+    count: 1,
+    compare,
   }
   const dispatch = useAppDispatch()
 
@@ -65,8 +70,12 @@ const ProductCard = ({
               className={
                 styles.ProductCard__content__middle__description__buttons__compare
               }
+              onClick={() => {
+                dispatch(toggleCompare(action))
+                setCompare(!getCompare)
+              }}
             >
-              <Comparison />
+              <Comparison fill={getCompare ? "#63686D" : "none"} />
             </div>
             <div
               className={

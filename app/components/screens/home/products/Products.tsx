@@ -10,11 +10,7 @@ import { useRouter } from "next/router"
 const Products = ({ title, products }: any) => {
   const { favorite } = useAppSelector((state) => state.favorites)
   const { basket } = useAppSelector((state) => state.basket)
-  const favoriteId: any = []
-  const basketId: any = []
-  favorite.forEach((item: any) => favoriteId.push(item.id))
-  basket.forEach((item: any) => basketId.push(item.id))
-
+  const { compare } = useAppSelector((state) => state.compare)
   return (
     <div className={styles.producstHome}>
       <div className={styles.producstHome__content}>
@@ -24,7 +20,9 @@ const Products = ({ title, products }: any) => {
         <div className={styles.producstHome__content__products}>
           {products.slice(0, 3).map((product) => (
             <ProductCard
-              favorite={favoriteId.indexOf(product.id) > -1 ? true : false}
+              favorite={favorite.some((item: any) => item.id == product.id)}
+              basket={basket.some((item: any) => item.id == product.id)}
+              compare={compare.some((item: any) => item.id == product.id)}
               key={product.id}
               id={product.id}
               title={product.title}

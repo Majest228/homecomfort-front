@@ -12,7 +12,7 @@ const Comparison = ({ fill = "none", w = 21, h = 21 }: any) => {
       <path
         d='M21 21H0M16.1 16.7143H11.9V6.71429H16.1V16.7143ZM9.1 16.7143H4.9V1H9.1V16.7143Z'
         stroke='#63686D'
-        stroke-width='2'
+        strokeWidth='2'
       />
     </svg>
   )
