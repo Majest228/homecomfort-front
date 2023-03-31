@@ -12,9 +12,8 @@ export default function Home({ products }: any) {
   return <HomePage products={products} />
 }
 
-
 export const getStaticProps: GetStaticProps = async () => {
-  const { data: products } = await apiAxios.get('product/all')
+  const { data: products } = await apiAxios.get("product/all")
 
   return { props: { products } }
 }

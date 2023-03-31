@@ -19,12 +19,14 @@
         &__item {
           width: 31%;
           margin-right: 30px;
+          padding-bottom: 20px;
           &__column {
             display: flex;
             justify-content: space-between;
             width: 90%;
             padding-left: 10px;
-            margin-bottom: 20px;
+            margin-top: 20px;
+
             &__name {
               p {
                 font-weight: 400;

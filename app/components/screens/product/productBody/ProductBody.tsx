@@ -1,15 +1,42 @@
-import React from "react"
+import React, { useState } from "react"
 import styles from "./ProductBody.module.scss"
 import ProductImg from "../../../../assets/productItem.jpg"
 import Image from "next/image"
 import Comparison from "@/app/components/ui/svg/comparison"
 import Favorite from "@/app/components/ui/svg/favorite"
 import Star from "@/app/components/ui/svg/star"
+import { useAppDispatch } from "@/app/hook/hook"
+import { toggleFavorite } from "@/app/store/favorite/favorite.slice"
+import { toggleBasket } from "@/app/store/basket/basket.slice"
+import { toggleCompare } from "@/app/store/compare/compare.slice"
 
-const ProductBody = ({ product, isLoading }) => {
+const ProductBody = ({
+  product,
+  isLoading,
+  favorite = false,
+  basket = false,
+  compare,
+}) => {
   const stars = ["star", "star", "star", "star", "star"]
   const rating = 4
-  console.log(isLoading ? "" : product)
+
+  const action = {
+    id: product.id,
+    favorite,
+    basket,
+    discount: 0,
+    description: product.description,
+    price: product.price,
+    title: product.title,
+    count: 1,
+    compare,
+  }
+
+  const [getFavorite, setFavorite] = useState(favorite)
+  const [getBasket, setBasket] = useState(basket)
+  const [getCompare, setCompare] = useState(compare)
+
+  const dispatch = useAppDispatch()
   return (
     <div className={styles.ProductBody}>
       <div className={styles.ProductBody__content}>
@@ -44,15 +71,23 @@ const ProductBody = ({ product, isLoading }) => {
                   className={
                     styles.ProductBody__content__right__content__top__right__comparison
                   }
+                  onClick={() => {
+                    dispatch(toggleCompare(action))
+                    setCompare(!getCompare)
+                  }}
                 >
-                  <Comparison />
+                  <Comparison fill={getCompare ? "#63686D" : "none"} />
                 </div>
                 <div
                   className={
                     styles.ProductBody__content__right__content__top__right__favorite
                   }
+                  onClick={() => {
+                    dispatch(toggleFavorite(action))
+                    setFavorite(!getFavorite)
+                  }}
                 >
-                  <Favorite />
+                  <Favorite fillInner={getFavorite ? "red" : "none"} />
                 </div>
               </div>
             </div>
@@ -64,7 +99,7 @@ const ProductBody = ({ product, isLoading }) => {
                   styles.ProductBody__content__right__content__middle__description
                 }
               >
-                <p>Lizie угловой раскладной диван с ящиками для хранения</p>
+                <p>{product.description}</p>
               </div>
               <div
                 className={
@@ -104,14 +139,21 @@ const ProductBody = ({ product, isLoading }) => {
                   styles.ProductBody__content__right__content__bottom__price
                 }
               >
-                <p>478 000 ₸</p>
+                <p>{product.price}тг</p>
               </div>
               <div
                 className={
                   styles.ProductBody__content__right__content__bottom__buy
                 }
               >
-                <button>Добавить в корзину</button>
+                <button
+                  onClick={() => {
+                    dispatch(toggleBasket(action))
+                    setBasket(!getBasket)
+                  }}
+                >
+                  {getBasket ? "Добавить в корзину" : "Удалить из корзины"}
+                </button>
               </div>
             </div>
           </div>

@@ -1,7 +1,7 @@
 import React from "react"
 import styles from "../ProductDesc.module.scss"
 
-const ProductColumn = () => {
+const ProductColumn = ({ name = "none", value = "none" }) => {
   return (
     <div className={styles.ProductDesc__content__characteristic__table__column}>
       <div
@@ -14,14 +14,14 @@ const ProductColumn = () => {
             styles.ProductDesc__content__characteristic__table__column__stat__title
           }
         >
-          <p>Сосна</p>
+          <p>{name}</p>
         </div>
         <div
           className={
             styles.ProductDesc__content__characteristic__table__column__stat__value
           }
         >
-          <p>20%</p>
+          <p>{value}</p>
         </div>
       </div>
     </div>
