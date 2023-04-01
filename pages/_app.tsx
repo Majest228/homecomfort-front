@@ -20,7 +20,7 @@ export default function App({ Component, pageProps }: AppProps & TypeComponentAu
     <QueryClientProvider client={queryClient}>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <AuthProvider Component={{ isOnlyUser: Component.isOnlyUser }}>
+          <AuthProvider Component={Component}>
             <Layout>
               <Component {...pageProps} />
             </Layout>

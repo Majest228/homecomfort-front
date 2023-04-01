@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import styles from "./Header.module.scss"
 import search from "../../../assets/search.svg"
 import catalog from "../../../assets/catalog.svg"
@@ -13,7 +13,21 @@ import CatalogIco from "@/app/components/ui/svg/Catalog"
 import HeaderIntro from "@/app/components/layout/header/header-intro/HeaderIntro"
 import AuthForm from "../../ui/auth-form/AuthForm"
 import Basket from "../../ui/basket/basket"
+import { useAuth } from "@/app/hook/useAuth"
+import { useQuery } from "@tanstack/react-query"
+import { UserService } from "@/app/services/user/user.service"
+import { useGetMeQuery } from "@/app/store/user/user.api"
+
 const Header = () => {
+
+  const { user } = useAuth()
+  const result = useGetMeQuery("")
+  const { data, isLoading } = useGetMeQuery("")
+
+
+  useEffect(() => {
+    user ? result.refetch() : ""
+  }, [user])
   return (
     <header className={styles.header}>
       <div className={styles.header__container}>
@@ -46,15 +60,28 @@ const Header = () => {
               <Image src={favourite} alt='favourite' />
               <p>Избранное</p>
             </Link>
-            <AuthForm str={"login"} />
+            {/* {user ?
+              isLoading ? (
+                <div>
+                  <Link href={`/profile`}>{data.login}</Link>
+                </div> : <AuthForm str={"login"} />
+            )
+            :""
+            } */}
+            {
+              user ? (
+                <div>
+                  <Link href={`/profile`}>{isLoading ? "" : data?.login}</Link>
+                </div>
+              )
+                : <AuthForm str={"login"} />
+            }
+            {/* {user ? !isLoading ? (
+              <div>
+                <Link href={`/profile`}>{data?.login}</Link>
+              </div>
+            ) : <AuthForm str={"login"} /> : <AuthForm str={"login"} />} */}
             <Basket />
-            {/* <Link
-              className={styles.header__content__navigation__cart}
-              href='/basket'
-            >
-              <Image src={cart} alt='favourite' />
-              <p>Корзина</p>
-            </Link> */}
           </div>
         </div>
       </div>

@@ -13,14 +13,12 @@ const AuthForm = () => {
   const [isShow, setIsShow] = useState(false)
   const { register: registerAuth, login } = useAction()
 
-
   const escape = useRef<HTMLElement>(null)
   const outside = useRef<HTMLElement>(null)
 
   useEffect(() => {
     console.log(type)
   }, [type])
-
 
   const handleEscape = (event: any) => {
     if (event.keyCode == 27) setIsShow(false)
@@ -37,7 +35,7 @@ const AuthForm = () => {
     defaultValues: {
       email: "",
       password: "",
-      login: ""
+      login: "",
     },
     mode: "onChange",
   })
@@ -68,8 +66,11 @@ const AuthForm = () => {
 
       {isShow && (
         <div className={styles.auth__modal} ref={escape}>
-          <form className={styles.auth__form} ref={outside} onSubmit={handleSubmit(onSubmit)
-          }>
+          <form
+            className={styles.auth__form}
+            ref={outside}
+            onSubmit={handleSubmit(onSubmit)}
+          >
             {type === "register" ? (
               <h3 className={styles.auth__form__title}>Регистрация</h3>
             ) : type == "login" ? (
@@ -91,15 +92,19 @@ const AuthForm = () => {
               label='Электронная почта  *'
               autoComplete='off'
             />
-            <Field
-              {...register("login", {
-                required: "Login required",
-              })}
-              placeholder='Majest228'
-              error={errors.email}
-              label='Login  *'
-              autoComplete='off'
-            />
+            {type == "register" ? (
+              <Field
+                {...register("login", {
+                  required: "Login required",
+                })}
+                placeholder='Majest228'
+                error={errors.email}
+                label='Login  *'
+                autoComplete='off'
+              />
+            ) : (
+              ""
+            )}
             <Field
               {...register("password", {
                 required: "Password required",

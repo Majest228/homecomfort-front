@@ -11,6 +11,11 @@ ol[class] {
   padding: 0;
 }
 
+html,
+body {
+  height: 100%;
+}
+
 body,
 h1,
 h2,
@@ -49,7 +54,7 @@ img {
   display: block;
 }
 
-article > * + * {
+article>*+* {
   margin-top: 1em;
 }
 
@@ -72,13 +77,16 @@ body {
     scroll-behavior: auto !important;
   }
 }
+
 .react-horizontal-scrolling-menu--scroll-container::-webkit-scrollbar {
   display: none;
 }
 
 .react-horizontal-scrolling-menu--scroll-container {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 .rct-node-expanded {
@@ -87,4 +95,8 @@ body {
       transform: rotate(-180deg);
     }
   }
+}
+
+#__next {
+  height: 100%;
 }

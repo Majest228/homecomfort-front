@@ -12,12 +12,15 @@ import {
 } from "redux-persist"
 import storage from "redux-persist/lib/storage"
 import { rootReducer } from "./root-reducer"
+import { userApi } from "./user/user.api"
+import { adminApi } from "./admin/admin.api"
 
 
 
 const persistConfig = {
   key: "root",
   storage,
+  whitelist: ['user ', 'favorite']
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
@@ -26,10 +29,15 @@ const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
-    }),
+      // serializableCheck: {
+      //   ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      // },
+
+    }).concat(
+      userApi.middleware,
+      adminApi.middleware
+
+    ),
 })
 
 export const persistor = persistStore(store)

@@ -4,17 +4,30 @@ import { useAction } from "../hook/useAction";
 import { useAuth } from "../hook/useAuth";
 import { TypeComponentAuthFields } from "./private.route.interface";
 
-const CheckRole: FC<PropsWithChildren<TypeComponentAuthFields>> = ({ Component: { isOnlyUser }, children }) => {
+const CheckRole: FC<PropsWithChildren<TypeComponentAuthFields>> = ({ Component: { isOnlyUser, isOnlyAdmin }, children }) => {
 
     const { user } = useAuth()
 
     const router = useRouter()
+    const Children = () => <>{children}</>
 
+    let isUsed = false
+    if (user && isOnlyUser && isUsed == false) {
+        isUsed = true
+        return <Children />
+    }
+    else if (user && isOnlyUser == false && isUsed == false) {
+        router.replace('/')
+    }
+    else if (user?.isAdmin) return <Children />
+    else {
+        router.pathname !== '/' && router.replace("/")
+        return <Children />
+    }
 
-    if (user && isOnlyUser) return <>{children}</>
-
-    router.pathname !== '/' && router.replace('/')
     return null
+
+
 
 }
 

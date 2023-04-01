@@ -2,8 +2,9 @@ import React from 'react'
 import Product from '@/app/components/screens/product/ProductPage'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import apiAxios from '@/app/api/api.interceptor'
+import { NextPageAuth } from '@/app/providers/private.route.interface'
 
-const ProductPage = ({ product }: any) => {
+const ProductPage: NextPageAuth = ({ product }: any) => {
   return (
     <Product product={product} />
   )

@@ -18,6 +18,7 @@ import { getAccessToken } from "@/app/services/auth/auth.helper"
 const apiAxios = axios.create({
   baseURL: "http://localhost:8080/api",
   headers: getContentType(),
+
 })
 
 export default apiAxios
