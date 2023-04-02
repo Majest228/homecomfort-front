@@ -31,13 +31,15 @@ const ProductList = () => {
       return commonKeys.reduce((flag: boolean, key: string): any => {
         if (key == "title") {
           let search = elem[key]
-          console.log(search)
           if (search.toUpperCase().includes(filters.title[0].toUpperCase()))
             return flag
           else return false
         }
         if (key == "price") {
-          if (elem[key] >= filters[key][0] && elem[key] <= filters[key][1])
+          if (
+            elem.priceWithDiscount >= filters[key][0] &&
+            elem[key] <= filters[key][1]
+          )
             return flag
           else return false
         }
@@ -56,7 +58,7 @@ const ProductList = () => {
               styles.ProductList__container__content__filters__title__text
             }
           >
-            Протеин
+            Все товары
           </h2>
           <button
             className={
@@ -86,6 +88,7 @@ const ProductList = () => {
                   className={
                     styles.ProductList__container__content__products__items__card
                   }
+                  key={product.id}
                 >
                   <ProductCard
                     favorite={favorite.some(

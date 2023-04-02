@@ -2,9 +2,14 @@ import React, { useEffect, useRef, useState } from "react"
 import styles from "../productList.module.scss"
 import { CatalogInterface } from "./Catalog.interface"
 import Category from "./category/category"
+import { useAppDispatch } from "@/app/hook/hook"
+import {
+  updateMinPrice,
+  updateMaxPrice,
+} from "@/app/store/filter/filters.slice"
 
 const ProductsFilters = () => {
-  const [minValue, setMinValue] = useState(1300)
+  const [minValue, setMinValue] = useState(0)
   const [maxValue, setMaxValue] = useState(999990)
   const [categoriesFull, setCategoriesFull] = useState(true)
   const categories: CatalogInterface[] = [
@@ -56,11 +61,14 @@ const ProductsFilters = () => {
   const handleMin = (e: any) => {
     setMinValue(e.target.value)
   }
-
+  const dispatch = useAppDispatch()
   useEffect(() => {
     progressRef.current.style.left = (minValue / 999990) * 100 + "%"
     progressRef.current.style.right = 100 - (maxValue / 999990) * 100 + "%"
+    dispatch(updateMaxPrice(maxValue))
+    dispatch(updateMinPrice(minValue))
   }, [minValue, maxValue])
+
   return (
     <div>
       <div className={styles.ProductList__container__content__filters__content}>

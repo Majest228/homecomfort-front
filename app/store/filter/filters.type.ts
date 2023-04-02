@@ -1,6 +1,6 @@
 export default interface IFilter {
   category: [string]
-  name: [string]
+  title: [string]
   price: [number, number]
   categories: String[]
   showFilter: boolean
