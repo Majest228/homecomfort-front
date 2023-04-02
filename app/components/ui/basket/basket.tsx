@@ -3,6 +3,8 @@ import { useAppSelector, useOnClickOutside } from "@/app/hook/hook"
 import styles from "./basket.module.scss"
 import CartIco from "../svg/cart"
 import BasketItem from "./basketItem/basketItem"
+import apiAxios from "@/app/api/api.interceptor"
+import Link from "next/link"
 const Basket = () => {
   const [isShow, setIsShow] = useState(false)
 
@@ -23,8 +25,25 @@ const Basket = () => {
 
   const { basket } = useAppSelector((state) => state.basket)
   const summ = basket.reduce(
-    (acc, product) => acc + product.price * product.count,
+    (acc, product) =>
+      acc + product.priceWithDiscount * product.priceWithDiscount,
     0
+  )
+  const [products, setProducts] = useState([])
+  async function getProducts() {
+    const { data: products } = await apiAxios.get("product/all")
+    return setProducts(products)
+  }
+  useEffect(() => {
+    getProducts()
+  }, [])
+  const selectedProducts = {}
+  products.forEach((item: any) =>
+    basket.forEach((product: any) => {
+      if (item.id == product.id) {
+        selectedProducts[product.id] = item
+      }
+    })
   )
   return (
     <div className={styles.basket__wrapper}>
@@ -43,8 +62,10 @@ const Basket = () => {
                 <BasketItem
                   id={item.id}
                   description={item.description}
-                  discount={item.discount}
-                  price={item.price}
+                  priceWithDiscount={
+                    selectedProducts[item.id].priceWithDiscount
+                  }
+                  price={selectedProducts[item.id].price}
                   count={item.count}
                 />
               ))}
@@ -54,7 +75,9 @@ const Basket = () => {
                 <p>{summ}тг</p>
               </div>
               <div className={styles.basket__form__ordering__sumbit}>
-                <button>Оформить заказ</button>
+                <Link href='ordering' onClick={() => setIsShow(!isShow)}>
+                  <button>Оформить заказ</button>
+                </Link>
               </div>
             </div>
           </div>

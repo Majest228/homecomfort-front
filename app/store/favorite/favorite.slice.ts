@@ -1,9 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit"
+import Cookies from "js-cookie"
 
 const favoriteSlice = createSlice({
   name: "favorite",
   initialState: {
-    favorite: [],
+    favorite: Cookies.get("favorite")
+      ? JSON.parse(Cookies.get("favorite"))
+      : [],
   },
   reducers: {
     toggleFavorite(state, action) {
@@ -21,6 +24,7 @@ const favoriteSlice = createSlice({
       } else {
         state.favorite.push(action.payload)
       }
+      Cookies.set("favorite", JSON.stringify(state.favorite))
     },
   },
 })

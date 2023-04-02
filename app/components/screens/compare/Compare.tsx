@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react"
 import ProductCard from "../../ui/card-item/productCard"
 import styles from "./Compare.module.scss"
 import CompareColumn from "./compareColumn/compareColumn"
+import { IProduct } from "@/app/services/product/product.interface"
 
 const Compare = () => {
   const { compare } = useAppSelector((state) => state.compare)
@@ -18,8 +19,8 @@ const Compare = () => {
   useEffect(() => {
     getProducts()
   }, [])
-  const selectedProducts = {}
-  products.forEach((item): any =>
+  const selectedProducts: any = {}
+  products.forEach((item: IProduct) =>
     compare.forEach((product: any) => {
       if (item.id == product.id) {
         selectedProducts[product.id] = item
@@ -34,15 +35,17 @@ const Compare = () => {
             <h3>Сравнить товары</h3>
           </div>
           <div className={styles.Compare__container__content__products}>
-            {compare.map((item) => (
+            {compare.map((item: IProduct) => (
               <div
                 className={styles.Compare__container__content__products__item}
               >
                 <ProductCard
                   id={item.id}
                   description={item.description}
-                  discount={item.discount}
-                  price={item.price}
+                  priceWithDiscount={
+                    selectedProducts[item.id]?.priceWithDiscount
+                  }
+                  price={selectedProducts[item.id]?.price}
                   title={item.title}
                   favorite={favorite.some(
                     (product: any) => item.id == product.id

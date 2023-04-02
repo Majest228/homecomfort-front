@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit"
+import Cookies from "js-cookie"
 
 const compareSlice = createSlice({
   name: "compare",
   initialState: {
-    compare: [],
+    compare: Cookies.get("compare") ? JSON.parse(Cookies.get("compare")) : [],
   },
   reducers: {
     toggleCompare(state, action) {
@@ -21,6 +22,7 @@ const compareSlice = createSlice({
       } else {
         state.compare.push(action.payload)
       }
+      Cookies.set("compare", JSON.stringify(state.compare))
     },
   },
 })

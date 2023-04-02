@@ -17,17 +17,18 @@ import { useAuth } from "@/app/hook/useAuth"
 import { useQuery } from "@tanstack/react-query"
 import { UserService } from "@/app/services/user/user.service"
 import { useGetMeQuery } from "@/app/store/user/user.api"
+import { useAppDispatch } from "@/app/hook/hook"
+import { updateSearch } from "@/app/store/filter/filters.slice"
 
 const Header = () => {
-
   const { user } = useAuth()
   const result = useGetMeQuery("")
   const { data, isLoading } = useGetMeQuery("")
 
-
   useEffect(() => {
     user ? result.refetch() : ""
   }, [user])
+  const dispatch = useAppDispatch()
   return (
     <header className={styles.header}>
       <div className={styles.header__container}>
@@ -42,8 +43,13 @@ const Header = () => {
             <CatalogIco />
           </button>
           <div className={styles.header__content__search}>
-            <input placeholder='Искать среди 5000 товаров!' />
-            <Image src={search} alt='search' />
+            <input
+              placeholder='Искать среди 5000 товаров!'
+              onChange={(e) => dispatch(updateSearch(e.target.value))}
+            />
+            <Link href={"products"}>
+              <Image src={search} alt='search' />
+            </Link>
           </div>
           <div className={styles.header__content__navigation}>
             <Link
@@ -68,14 +74,13 @@ const Header = () => {
             )
             :""
             } */}
-            {
-              user ? (
-                <div>
-                  <Link href={`/profile`}>{isLoading ? "" : data?.login}</Link>
-                </div>
-              )
-                : <AuthForm str={"login"} />
-            }
+            {user ? (
+              <div>
+                <Link href={`/profile`}>{isLoading ? "" : data?.login}</Link>
+              </div>
+            ) : (
+              <AuthForm str={"login"} />
+            )}
             {/* {user ? !isLoading ? (
               <div>
                 <Link href={`/profile`}>{data?.login}</Link>

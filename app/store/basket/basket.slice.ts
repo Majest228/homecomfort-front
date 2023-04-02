@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit"
+import Cookies from "js-cookie"
 
 const basketSlice = createSlice({
   name: "basket",
   initialState: {
-    basket: [],
+    basket: Cookies.get("basket") ? JSON.parse(Cookies.get("basket")) : [],
   },
   reducers: {
     toggleBasket(state, action) {
@@ -20,6 +21,7 @@ const basketSlice = createSlice({
       } else {
         state.basket.push(action.payload)
       }
+      Cookies.set("basket", JSON.stringify(state.basket))
     },
     changeCount(state, action) {
       state.basket.map((item) =>
@@ -27,6 +29,7 @@ const basketSlice = createSlice({
           ? (item.count = action.payload.value)
           : item
       )
+      Cookies.set("basket", JSON.stringify(state.basket))
     },
     plusCount(state, action) {
       state.basket.map((item) =>
@@ -36,6 +39,7 @@ const basketSlice = createSlice({
             : item
           : item
       )
+      Cookies.set("basket", JSON.stringify(state.basket))
     },
     minusCount(state) {
       state.basket.map((item) =>
@@ -45,6 +49,7 @@ const basketSlice = createSlice({
             : item
           : item
       )
+      Cookies.set("basket", JSON.stringify(state.basket))
     },
   },
 })

@@ -10,7 +10,13 @@ import {
   minusCount,
   toggleBasket,
 } from "@/app/store/basket/basket.slice"
-const BasketItem = ({ id, description, discount, price, count }: any) => {
+const BasketItem = ({
+  id,
+  description,
+  priceWithDiscount,
+  price,
+  count,
+}: any) => {
   const dispatch = useAppDispatch()
   const min = 1
   const max = 100
@@ -48,14 +54,14 @@ const BasketItem = ({ id, description, discount, price, count }: any) => {
               styles.basket__form__products__product__left__description__discount
             }
           >
-            Скидка: {discount}%
+            Скидка: {100 - (priceWithDiscount * 100) / price}%
           </p>
           <p
             className={
               styles.basket__form__products__product__left__description__price
             }
           >
-            Цена: {Math.trunc(price * ((100 - discount) / 100))}тг.
+            Цена: {priceWithDiscount}тг.
           </p>
         </div>
       </div>
@@ -132,7 +138,7 @@ const BasketItem = ({ id, description, discount, price, count }: any) => {
               styles.basket__form__products__product__right__price__discount
             }
           >
-            {Math.trunc(price * ((100 - discount) / 100))}тг
+            {priceWithDiscount}тг
           </p>
         </div>
         <div

@@ -27,6 +27,7 @@
         &__content {
           display: flex;
           justify-content: space-between;
+          min-width: 280px;
           &__left {
             &__price {
               font-style: normal;

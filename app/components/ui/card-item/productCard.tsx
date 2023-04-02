@@ -15,7 +15,7 @@ const ProductCard = ({
   id,
   favorite = false,
   basket = false,
-  discount = 0,
+  priceWithDiscount = 0,
   description = "Alia 3-x местный диван, обивка велюр, терракот",
   title,
   price,
@@ -28,7 +28,7 @@ const ProductCard = ({
     id,
     favorite,
     basket,
-    discount,
+    priceWithDiscount,
     description,
     price,
     title,
@@ -48,7 +48,7 @@ const ProductCard = ({
             <p>Новинка</p>
           </div>
           <div className={styles.ProductCard__content__top__status__value}>
-            <p>-{discount}%</p>
+            <p>-{100 - (priceWithDiscount * 100) / price}%</p>
           </div>
         </div>
         <Link href={`products/product/${id}`} className={styles.ProductCard}>
@@ -94,7 +94,7 @@ const ProductCard = ({
       <div className={styles.ProductCard__content__bottom}>
         <div className={styles.ProductCard__content__bottom__price}>
           <div className={styles.ProductCard__content__bottom__price__discount}>
-            <p>{Math.trunc(price * ((100 - discount) / 100))}тг</p>
+            <p>{priceWithDiscount}тг</p>
           </div>
           <div
             className={styles.ProductCard__content__bottom__price__nodiscount}
