@@ -25,8 +25,7 @@ const Basket = () => {
 
   const { basket } = useAppSelector((state) => state.basket)
   const summ = basket.reduce(
-    (acc, product) =>
-      acc + product.priceWithDiscount * product.priceWithDiscount,
+    (acc, product) => acc + product.priceWithDiscount * product.count,
     0
   )
   const [products, setProducts] = useState([])

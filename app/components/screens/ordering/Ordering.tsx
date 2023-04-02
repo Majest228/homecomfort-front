@@ -1,8 +1,31 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import styles from "./Ordering.module.scss"
 import OrderingItem from "./orderingItem/orderingItem"
+import { useAppSelector } from "@/app/hook/hook"
+import apiAxios from "@/app/api/api.interceptor"
 
 const Ordering = () => {
+  const { basket } = useAppSelector((state) => state.basket)
+  const summ = basket.reduce(
+    (acc, product) => acc + product.priceWithDiscount * product.count,
+    0
+  )
+  const [products, setProducts] = useState([])
+  async function getProducts() {
+    const { data: products } = await apiAxios.get("product/all")
+    return setProducts(products)
+  }
+  useEffect(() => {
+    getProducts()
+  }, [])
+  const selectedProducts: any = {}
+  products.forEach((item: any) =>
+    basket.forEach((product: any) => {
+      if (item.id == product.id) {
+        selectedProducts[product.id] = item
+      }
+    })
+  )
   return (
     <div className={styles.Ordering}>
       <div className={styles.Ordering__container}>
@@ -50,8 +73,13 @@ const Ordering = () => {
               <h3>Ваш заказ</h3>
             </div>
             <div className={styles.Ordering__container__content__right__items}>
-              <OrderingItem />
-              <OrderingItem />
+              {basket.map((product: any) => (
+                <OrderingItem
+                  price={selectedProducts[product.id]?.priceWithDiscount}
+                  count={product.count}
+                  description={product.description}
+                />
+              ))}
             </div>
             <div className={styles.Ordering__container__content__right__sum}>
               <div
@@ -66,7 +94,7 @@ const Ordering = () => {
                   styles.Ordering__container__content__right__sum__value
                 }
               >
-                <p>885000тг</p>
+                <p>{summ}тг</p>
               </div>
             </div>
             <div

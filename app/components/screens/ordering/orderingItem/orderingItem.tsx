@@ -1,7 +1,7 @@
 import React from "react"
 import styles from "../Ordering.module.scss"
 
-const OrderingItem = () => {
+const OrderingItem = ({ description = "", count = 0, price = 0 }) => {
   return (
     <div className={styles.Ordering__container__content__right__items__item}>
       <div
@@ -10,7 +10,7 @@ const OrderingItem = () => {
         }
       >
         <p>
-          Alia 3-x местный диван, обивка велюр, терракот <a>× 1</a>
+          {description} <a>× {count}</a>
         </p>
       </div>
       <div
@@ -18,7 +18,7 @@ const OrderingItem = () => {
           styles.Ordering__container__content__right__items__item__price
         }
       >
-        <p>690000тг</p>
+        <p>{price * count}тг</p>
       </div>
     </div>
   )
