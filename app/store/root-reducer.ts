@@ -6,6 +6,7 @@ import { combineReducers } from "@reduxjs/toolkit"
 import { userSlice } from "@/app/services/user/user.slice"
 import { userApi } from "./user/user.api"
 import { adminApi } from "./admin/admin.api"
+import { categoryApi } from "./category/category.api"
 
 export const rootReducer = combineReducers({
   favorites: favoriteReducer,
@@ -15,4 +16,5 @@ export const rootReducer = combineReducers({
   user: userSlice.reducer,
   [userApi.reducerPath]: userApi.reducer,
   [adminApi.reducerPath]: adminApi.reducer,
+  [categoryApi.reducerPath]: categoryApi.reducer,
 })

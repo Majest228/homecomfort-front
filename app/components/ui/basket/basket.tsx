@@ -5,6 +5,7 @@ import CartIco from "../svg/cart"
 import BasketItem from "./basketItem/basketItem"
 import apiAxios from "@/app/api/api.interceptor"
 import Link from "next/link"
+import Cookies from "js-cookie"
 const Basket = () => {
   const [isShow, setIsShow] = useState(false)
 
@@ -30,7 +31,7 @@ const Basket = () => {
   )
   const [products, setProducts] = useState([])
   async function getProducts() {
-    const { data: products } = await apiAxios.get("product/all")
+    const { data: products } = await apiAxios.get("product/all",)
     return setProducts(products)
   }
   useEffect(() => {

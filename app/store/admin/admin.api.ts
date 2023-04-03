@@ -40,6 +40,33 @@ export const adminApi = createApi({
             }),
             invalidatesTags: () => [{ type: "Admin" }],
         }),
+        createProduct: build.mutation({
+            query: ({ title, slug }) => ({
+                url: `product/admin/create`,
+                method: "POST",
+                body: { title, slug },
+            }),
+            invalidatesTags: () => [{ type: "Admin" }],
+        }),
+        getAllProduts: build.query({
+            query: () => ({
+                url: `product/admin/all`,
+            }),
+            providesTags: () => [{ type: "Admin" }]
+        }),
+        deleteProduct: build.mutation({
+            query: (id) => ({
+                url: `product/admin/delete/${id}`,
+                method: "DELETE",
+            }),
+            invalidatesTags: () => [{ type: "Admin" }],
+        }),
+        getProductById: build.query({
+            query: (id) => ({
+                url: `product/by/${id}`,
+            }),
+            providesTags: () => [{ type: "Admin" }]
+        }),
     }),
 
 })
@@ -48,5 +75,9 @@ export const {
     useGetAllQuery,
     useDeleteUserMutation,
     useGetByIdQuery,
-    useUpdateProfileMutation
+    useUpdateProfileMutation,
+    useGetAllProdutsQuery,
+    useDeleteProductMutation,
+    useCreateProductMutation,
+    useGetProductByIdQuery
 } = adminApi
