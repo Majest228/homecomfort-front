@@ -18,13 +18,12 @@ import { useQuery } from "@tanstack/react-query"
 import { UserService } from "@/app/services/user/user.service"
 import { useGetMeQuery } from "@/app/store/user/user.api"
 import { useAppDispatch } from "@/app/hook/hook"
-import { updateSearch } from "@/app/store/filter/filters.slice"
+import { updateCategory, updateSearch } from "@/app/store/filter/filters.slice"
 
 const Header = () => {
   const { user } = useAuth()
   const result = useGetMeQuery("")
   const { data, isLoading } = useGetMeQuery("")
-
   useEffect(() => {
     user ? result.refetch() : ""
   }, [user])
@@ -47,7 +46,10 @@ const Header = () => {
               placeholder='Искать среди 5000 товаров!'
               onChange={(e) => dispatch(updateSearch(e.target.value))}
             />
-            <Link href={"products"}>
+            <Link
+              href={"products"}
+              onClick={() => dispatch(updateCategory(""))}
+            >
               <Image src={search} alt='search' />
             </Link>
           </div>

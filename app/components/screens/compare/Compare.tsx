@@ -58,12 +58,18 @@ const Compare = () => {
                 {Object.keys(selectedProducts).length != 0 ? (
                   <>
                     <CompareColumn
-                      name={"размер"}
+                      name={"Размер"}
                       value={selectedProducts[item.id].size || "Нет"}
                     />
                     <CompareColumn
                       name={"Цена"}
                       value={`${selectedProducts[item.id].price}тг`}
+                    />
+                    <CompareColumn
+                      name={"Производитель"}
+                      value={
+                        `${selectedProducts[item.id].manufacturer}` || "Нет"
+                      }
                     />
                     <CompareColumn
                       name={"Со скидкой"}

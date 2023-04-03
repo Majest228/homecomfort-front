@@ -2,10 +2,9 @@ import IFilter from "./filters.type"
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 
 const initialState: IFilter = {
-  category: [""],
+  categoryId: ["", ""],
   title: [""],
   price: [0, 99999999],
-  categories: [],
   showFilter: false,
 }
 
@@ -26,8 +25,9 @@ export const filtersSlice = createSlice({
         ? (state.price[1] = 99999999)
         : (state.price[1] = +action.payload)
     },
-    updateCategories(state, action: PayloadAction<Array<String>>) {
-      state.categories = action.payload
+    updateCategory(state, action: PayloadAction<string>) {
+      state.categoryId[0] = action.payload[0]
+      state.categoryId[1] = action.payload[1]
     },
     changeShowFilter(state) {
       state.showFilter = !state.showFilter
@@ -43,7 +43,7 @@ export const {
   updateSearch,
   updateMinPrice,
   updateMaxPrice,
-  updateCategories,
+  updateCategory,
   initialLoadOrder,
   changeShowFilter,
 } = filtersSlice.actions

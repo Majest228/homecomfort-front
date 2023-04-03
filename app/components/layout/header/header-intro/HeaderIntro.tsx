@@ -16,9 +16,9 @@ const HeaderIntro = () => {
           <li className={styles.header__contentup__navigation__list__item}>
             <Link
               className={styles.header__contentup__navigation__list__item__link}
-              href='/'
+              href='/catalog'
             >
-              Акции
+              Каталог
             </Link>
           </li>
           <li className={styles.header__contentup__navigation__list__item}>

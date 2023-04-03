@@ -38,9 +38,13 @@ const ProductList = () => {
         if (key == "price") {
           if (
             elem.priceWithDiscount >= filters[key][0] &&
-            elem[key] <= filters[key][1]
+            elem.priceWithDiscount <= filters[key][1]
           )
             return flag
+          else return false
+        }
+        if (key == "categoryId") {
+          if (elem[key] == filters[key][0]) return flag
           else return false
         }
       }, true)
@@ -58,7 +62,7 @@ const ProductList = () => {
               styles.ProductList__container__content__filters__title__text
             }
           >
-            Все товары
+            {filters.categoryId[1] ? filters.categoryId[1] : "Все товары"}
           </h2>
           <button
             className={

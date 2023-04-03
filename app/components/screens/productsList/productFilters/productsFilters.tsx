@@ -148,76 +148,7 @@ const ProductsFilters = () => {
               />
             </div>
           </div>
-          <div
-            className={
-              styles.ProductList__container__content__filters__content__left__category
-            }
-          >
-            <form
-              className={
-                styles.ProductList__container__content__filters__content__left__category__form
-              }
-            >
-              <h2
-                className={
-                  styles.ProductList__container__content__filters__content__left__category__form__title
-                }
-              >
-                Категории
-              </h2>
-              <ul
-                className={
-                  styles.ProductList__container__content__filters__content__left__category__form__categories
-                }
-              >
-                {categories.length > 4 && categoriesFull
-                  ? categories
-                      .slice(0, 5)
-                      .map((category) => (
-                        <Category
-                          key={category._id}
-                          _id={category._id}
-                          name={category.name}
-                        />
-                      ))
-                  : categories
-                      .slice()
-                      .map((category) => (
-                        <Category
-                          key={category._id}
-                          _id={category._id}
-                          name={category.name}
-                        />
-                      ))}
 
-                {categoriesFull ? (
-                  <button
-                    className={
-                      styles.ProductList__container__content__filters__content__left__category__form__categories__button
-                    }
-                    onClick={(e) => {
-                      e.preventDefault()
-                      setCategoriesFull(!categoriesFull)
-                    }}
-                  >
-                    Показать еще
-                  </button>
-                ) : (
-                  <button
-                    className={
-                      styles.ProductList__container__content__filters__content__left__category__form__categories__button
-                    }
-                    onClick={(e) => {
-                      e.preventDefault()
-                      setCategoriesFull(!categoriesFull)
-                    }}
-                  >
-                    Скрыть
-                  </button>
-                )}
-              </ul>
-            </form>
-          </div>
           <div
             className={
               styles.ProductList__container__content__filters__content__left__producer
