@@ -1,8 +1,17 @@
 import React from "react"
 import styles from "../../../Profile.module.scss"
 import OrderItem from "./orderItem/orderItem"
+import { useRouter } from "next/router"
+import { useGetAllOrderItemByIdQuery } from "@/app/store/user/user.api"
+import orders from "@/pages/profile/orders"
 
 const ProfileOrderInfo = () => {
+  const router = useRouter()
+
+  const orderId = router.query.id
+  const { data, isLoading } = useGetAllOrderItemByIdQuery(orderId)
+
+  console.log(data, "data - single")
   return (
     <div className={styles.ProfilePage}>
       <div className={styles.ProfilePage__container}>
@@ -39,8 +48,11 @@ const ProfileOrderInfo = () => {
               <div
                 className={styles.ProfilePage__container__content__order__items}
               >
-                <OrderItem />
-                <OrderItem />
+                {isLoading
+                  ? []
+                  : data.map((order) => <OrderItem order={order} />)}
+                {/*<OrderItem data={data} />*/}
+                {/*<OrderItem />*/}
               </div>
               <div
                 className={

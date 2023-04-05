@@ -5,8 +5,13 @@ const basketSlice = createSlice({
   name: "basket",
   initialState: {
     basket: Cookies.get("basket") ? JSON.parse(Cookies.get("basket")) : [],
+    orderId: Cookies.get("orderId") ? JSON.parse(Cookies.get("orderId")) : 0,
   },
   reducers: {
+    clearBasket(state) {
+      state.basket = []
+      Cookies.remove("basket")
+    },
     toggleBasket(state, action) {
       let checked = false
 
@@ -51,10 +56,20 @@ const basketSlice = createSlice({
       )
       Cookies.set("basket", JSON.stringify(state.basket))
     },
+    setOrderId(state, { payload }) {
+      state.orderId = payload
+      Cookies.set("orderId", payload)
+    },
   },
 })
 
-export const { toggleBasket, changeCount, plusCount, minusCount } =
-  basketSlice.actions
+export const {
+  toggleBasket,
+  changeCount,
+  plusCount,
+  minusCount,
+  clearBasket,
+  setOrderId,
+} = basketSlice.actions
 
 export default basketSlice.reducer

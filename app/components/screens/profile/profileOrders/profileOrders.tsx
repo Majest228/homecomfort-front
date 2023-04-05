@@ -2,8 +2,10 @@ import React from "react"
 import ProfileLinks from "../profileLinks/profileLinks"
 import styles from "../Profile.module.scss"
 import ProfileOrder from "./profileOrder/profileOrder"
+import { useGetAllOrdersQuery } from "@/app/store/user/user.api"
 
 const ProfileOrders = () => {
+
   return (
     <div className={styles.ProfilePage}>
       <div className={styles.ProfilePage__container}>

@@ -1,12 +1,15 @@
 .ProfilePage {
   margin-top: 40px;
   margin-bottom: 40px;
+
   &__container {
     max-width: 1260px;
     margin: 0 auto;
+
     &__content {
       &__title {
         margin-bottom: 20px;
+
         p {
           font-weight: 500;
           font-size: 46px;
@@ -14,15 +17,19 @@
           color: #1a1a1a;
         }
       }
+
       &__links {
         margin-bottom: 40px;
+
         ul {
           list-style: none;
           margin: 0;
           padding: 0;
           display: flex;
+
           li {
             margin-right: 40px;
+
             a {
               text-decoration: none;
               color: #1a1a1a;
@@ -35,19 +42,24 @@
           }
         }
       }
+
       &__form {
         form {
           display: flex;
           justify-content: space-between;
         }
+
         &__left {
           width: 45%;
         }
+
         &__right {
           width: 45%;
         }
+
         &__personal {
           margin-bottom: 20px;
+
           p {
             font-weight: 500;
             font-size: 30px;
@@ -55,8 +67,10 @@
             color: #1a1a1a;
           }
         }
+
         &__input {
           margin-bottom: 30px;
+
           input {
             width: 100%;
             border: 2px solid #005bcc;
@@ -68,8 +82,10 @@
             color: #1a1a1a;
           }
         }
+
         &__submit {
           text-align: right;
+
           button {
             border: none;
             color: #005bcc;
@@ -83,8 +99,12 @@
           }
         }
       }
+
       &__orders {
         &__order {
+          display: flex;
+          flex-direction: column;
+
           a {
             font-weight: 500;
             font-size: 36px;
@@ -94,10 +114,12 @@
           }
         }
       }
+
       &__favorites {
         display: flex;
         flex-wrap: wrap;
       }
+
       &__order {
         &__title {
           p {
@@ -107,17 +129,21 @@
             color: #1a1a1a;
           }
         }
+
         &__content {
           margin-top: 20px;
           border: 2px solid #005bcc;
           padding: 20px;
           border-radius: 20px;
+
           &__status {
             display: flex;
+
             p {
               font-weight: 500;
               line-height: 130%;
             }
+
             &__sending {
               color: #1a1a1a;
               font-size: 26px;
@@ -126,6 +152,7 @@
                 color: #005bcc;
               }
             }
+
             &__date {
               margin-left: 20px;
               color: #005bcc;
@@ -134,18 +161,21 @@
               margin-top: 10px;
             }
           }
-          &__items {
-          }
+
+          &__items {}
+
           &__product {
             margin-top: 40px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             border-bottom: 1px solid #1a1a1a;
+
             &__left {
               display: flex;
               align-items: center;
               height: 100px;
+
               &__img {
                 img {
                   object-fit: contain;
@@ -154,21 +184,25 @@
                   overflow: hidden;
                 }
               }
+
               &__description {
                 text-align: left;
                 font-weight: 400;
                 font-size: 16px;
                 line-height: 150%;
                 color: #545454;
-                &__title {
-                }
+
+                &__title {}
+
                 &__discount {
                   color: #005bcc;
                 }
               }
             }
+
             &__middle {
               width: 20%;
+
               &__title {
                 p {
                   font-weight: 400;
@@ -178,12 +212,14 @@
                 }
               }
             }
-            &__right {
-            }
+
+            &__right {}
           }
+
           &__amount {
             text-align: right;
             margin-top: 40px;
+
             p {
               font-weight: 500;
               font-size: 26px;

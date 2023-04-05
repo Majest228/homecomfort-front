@@ -3,7 +3,8 @@ import styles from "../../../../Profile.module.scss"
 import Image from "next/image"
 import Product from "../../../../../../../assets/productItem.jpg"
 
-const OrderItem = () => {
+const OrderItem = ({ order }: any) => {
+  const { product } = order
   return (
     <div
       className={
@@ -32,7 +33,7 @@ const OrderItem = () => {
               styles.ProfilePage__container__content__order__content__product__left__description__title
             }
           >
-            Alia 3-x местный диван, обивка велюр, терракот
+            {product.title}
           </p>
           <p
             className={
@@ -46,7 +47,7 @@ const OrderItem = () => {
               styles.ProfilePage__container__content__order__content__product__left__description__price
             }
           >
-            Цена: 29990тг.
+            Цена: {product.price} тг.
           </p>
         </div>
       </div>

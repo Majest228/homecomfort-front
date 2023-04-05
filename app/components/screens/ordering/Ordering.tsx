@@ -1,11 +1,26 @@
 import React, { useEffect, useState } from "react"
 import styles from "./Ordering.module.scss"
-import OrderingItem from "./orderingItem/orderingItem"
-import { useAppSelector } from "@/app/hook/hook"
+import { useAppDispatch, useAppSelector } from "@/app/hook/hook"
 import apiAxios from "@/app/api/api.interceptor"
+import dynamic from "next/dynamic"
+import { useGetMeQuery } from "@/app/store/user/user.api"
+import Cookies from "js-cookie"
+import { useAuth } from "@/app/hook/useAuth"
+import Link from "next/link"
+import { clearBasket, setOrderId } from "@/app/store/basket/basket.slice"
+import axios from "axios"
+
+const OrderingItem = dynamic(() => import("./orderingItem/orderingItem"), {
+  ssr: false,
+})
 
 const Ordering = () => {
-  const { basket } = useAppSelector((state) => state.basket)
+  const { basket, orderId } = useAppSelector((state) => state.basket)
+  const [status, setStatus] = useState(false)
+  console.log(basket)
+  const { user } = useAuth()
+  const dispatch = useAppDispatch()
+  const { data, isLoading } = useGetMeQuery("")
   const summ = basket.reduce(
     (acc, product) => acc + product.priceWithDiscount * product.count,
     0
@@ -26,6 +41,54 @@ const Ordering = () => {
       }
     })
   )
+
+  //create order
+
+  const createOrder = async () => {
+    await apiAxios
+      .post(
+        "order/create",
+        { id: user.id },
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("accessToken")}`,
+          },
+        }
+
+      )
+      .then((res) => {
+        dispatch(setOrderId(res.data.id))
+        basket.forEach((item) =>
+          apiAxios.post(
+            `order/orderitem/${res.data.id}`,
+            {
+              productId: item.id,
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${Cookies.get("accessToken")}`,
+              },
+            }
+          )
+        )
+      })
+      .then((res) => {
+        apiAxios.patch(
+          `order/update-status/${Cookies.get("orderId")}`,
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${Cookies.get("accessToken")}`,
+            },
+          }
+        )
+        dispatch(clearBasket())
+        setStatus(true)
+      })
+  }
+
+  //
+
   return (
     <div className={styles.Ordering}>
       <div className={styles.Ordering__container}>
@@ -34,22 +97,28 @@ const Ordering = () => {
             <div className={styles.Ordering__container__content__left__title}>
               <h3>Детали оплаты</h3>
             </div>
-            <form className={styles.Ordering__container__content__left__form}>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault()
+                createOrder()
+              }}
+              className={styles.Ordering__container__content__left__form}
+            >
               <div
                 className={
                   styles.Ordering__container__content__left__form__input
                 }
               >
-                <input type='text' placeholder='Введите имя' />
+                {isLoading ? "" : <p>{data?.name}</p>}
               </div>
               <div
                 className={
                   styles.Ordering__container__content__left__form__input
                 }
               >
-                <input type='tel' placeholder='Введите телефон' />
+                {isLoading ? "" : <p>{data?.phone}</p>}
               </div>
-              <div
+              {/*        <div
                 className={
                   styles.Ordering__container__content__left__form__input
                 }
@@ -58,13 +127,13 @@ const Ordering = () => {
                   type='text'
                   placeholder='Введите город, улицу, номер дома и квартиру'
                 />
-              </div>
+              </div>*/}
               <div
                 className={
                   styles.Ordering__container__content__left__form__submit
                 }
               >
-                <button>Подтвердить заказ</button>
+                <button type={"submit"}>Подтвердить заказ</button>
               </div>
             </form>
           </div>
@@ -126,6 +195,13 @@ const Ordering = () => {
             </div>
           </div>
         </div>
+        {status ? (
+          <Link href={`/profile/orders/${orderId}`}>
+            Ваш заказ готов под номером {orderId}
+          </Link>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   )

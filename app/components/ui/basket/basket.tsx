@@ -6,8 +6,10 @@ import BasketItem from "./basketItem/basketItem"
 import apiAxios from "@/app/api/api.interceptor"
 import Link from "next/link"
 import Cookies from "js-cookie"
+import { useAuth } from "@/app/hook/useAuth"
 const Basket = () => {
   const [isShow, setIsShow] = useState(false)
+  const { user } = useAuth()
 
   const escape = useRef<HTMLElement>(null)
   const outside = useRef<HTMLElement>(null)
@@ -31,7 +33,7 @@ const Basket = () => {
   )
   const [products, setProducts] = useState([])
   async function getProducts() {
-    const { data: products } = await apiAxios.get("product/all",)
+    const { data: products } = await apiAxios.get("product/all")
     return setProducts(products)
   }
   useEffect(() => {
@@ -45,6 +47,7 @@ const Basket = () => {
       }
     })
   )
+
   return (
     <div className={styles.basket__wrapper}>
       <div onClick={() => setIsShow(!isShow)} className={styles.basket__open}>
