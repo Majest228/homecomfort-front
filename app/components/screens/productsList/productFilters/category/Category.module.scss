@@ -17,19 +17,36 @@
       content: "";
       background-position: center;
       background-size: contain;
-      width: 10px;
-      height: 8px;
+      width: 8px;
+      height: 1px;
       top: 50%;
-      left: 25%;
-      transform: translate(0, -50%);
+      left: 20%;
+      transform: rotate(45deg);
       position: absolute;
       display: none;
+      background-color: #0075ff;
+    }
+    &::before {
+      content: "";
+      background-position: center;
+      background-size: contain;
+      width: 8px;
+      height: 1px;
+      top: 50%;
+      left: 45%;
+      transform: rotate(-45deg);
+      position: absolute;
+      display: none;
+      background-color: #0075ff;
     }
     &:checked {
       background: #e2eeff;
       border: 1px solid #0075ff;
     }
     &:checked::after {
+      display: block;
+    }
+    &:checked::before {
       display: block;
     }
   }

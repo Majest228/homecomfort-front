@@ -54,7 +54,7 @@ const BasketItem = ({
               styles.basket__form__products__product__left__description__discount
             }
           >
-            Скидка: {100 - (priceWithDiscount * 100) / price}%
+            Скидка: {(100 - (priceWithDiscount * 100) / price).toFixed()}%
           </p>
           <p
             className={

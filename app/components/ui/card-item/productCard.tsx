@@ -48,7 +48,7 @@ const ProductCard = ({
             <p>Новинка</p>
           </div>
           <div className={styles.ProductCard__content__top__status__value}>
-            <p>-{100 - (priceWithDiscount * 100) / price}%</p>
+            <p>-{(100 - (priceWithDiscount * 100) / price).toFixed()}%</p>
           </div>
         </div>
         <Link href={`products/product/${id}`} className={styles.ProductCard}>

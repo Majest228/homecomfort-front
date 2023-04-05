@@ -4,8 +4,9 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 const initialState: IFilter = {
   categoryId: ["", ""],
   title: [""],
-  price: [0, 99999999],
-  showFilter: false,
+  price: [0, 999990],
+  resetFilter: false,
+  manufacturerId: [],
 }
 
 export const filtersSlice = createSlice({
@@ -22,15 +23,29 @@ export const filtersSlice = createSlice({
     },
     updateMaxPrice(state, action: PayloadAction<string>): void {
       action.payload == ""
-        ? (state.price[1] = 99999999)
+        ? (state.price[1] = 999990)
         : (state.price[1] = +action.payload)
     },
     updateCategory(state, action: PayloadAction<string>) {
       state.categoryId[0] = action.payload[0]
       state.categoryId[1] = action.payload[1]
     },
-    changeShowFilter(state) {
-      state.showFilter = !state.showFilter
+    changeResetFilter(state) {
+      state.resetFilter = !state.resetFilter
+    },
+    toggleManufacture(state, action) {
+      let checked = false
+      state.manufacturerId.forEach((item: any) => {
+        if (item == action.payload) checked = true
+      })
+      if (checked) {
+        const newState = state.manufacturerId.filter(
+          (item: any) => item !== action.payload
+        )
+        state.manufacturerId = newState
+      } else {
+        state.manufacturerId.push(action.payload)
+      }
     },
     initialLoadOrder() {
       return initialState
@@ -45,7 +60,8 @@ export const {
   updateMaxPrice,
   updateCategory,
   initialLoadOrder,
-  changeShowFilter,
+  changeResetFilter,
+  toggleManufacture,
 } = filtersSlice.actions
 
 export default filtersSlice.reducer

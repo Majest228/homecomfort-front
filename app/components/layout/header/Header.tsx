@@ -48,7 +48,7 @@ const Header = () => {
             />
             <Link
               href={"products"}
-              onClick={() => dispatch(updateCategory(""))}
+              onClick={() => dispatch(updateCategory(["", ""]))}
             >
               <Image src={search} alt='search' />
             </Link>

@@ -5,7 +5,11 @@ import ProductsFilters from "./productFilters/productsFilters"
 import styles from "./productList.module.scss"
 import apiAxios from "@/app/api/api.interceptor"
 import { IProduct } from "@/app/services/product/product.interface"
-import { useAppSelector } from "@/app/hook/hook"
+import { useAppSelector, useAppDispatch } from "@/app/hook/hook"
+import {
+  changeResetFilter,
+  initialLoadOrder,
+} from "@/app/store/filter/filters.slice"
 
 const ProductList = () => {
   const { favorite } = useAppSelector((state) => state.favorites)
@@ -19,6 +23,8 @@ const ProductList = () => {
   useEffect(() => {
     getProducts()
   }, [])
+
+  const dispatch = useAppDispatch()
 
   const filters = useAppSelector((state) => state.filters)
 
@@ -44,7 +50,13 @@ const ProductList = () => {
           else return false
         }
         if (key == "categoryId") {
+          if (!filters[key][0] || !filters[key][1]) return flag
           if (elem[key] == filters[key][0]) return flag
+          else return false
+        }
+        if (key == "manufacturerId") {
+          if (filters[key].length == 0) return flag
+          if (filters[key].includes(elem[key])) return flag
           else return false
         }
       }, true)
@@ -52,7 +64,6 @@ const ProductList = () => {
   }
 
   const filterData = Filter(products, filters)
-  console.log(products)
   return (
     <div className={styles.ProductList}>
       <div className={styles.ProductList__container}>
@@ -68,6 +79,10 @@ const ProductList = () => {
             className={
               styles.ProductList__container__content__filters__title__refresh
             }
+            onClick={() => {
+              dispatch(initialLoadOrder())
+              dispatch(changeResetFilter())
+            }}
           >
             Сбросить все фильтры
           </button>
