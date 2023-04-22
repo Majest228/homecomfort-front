@@ -3,7 +3,7 @@ import CommentItem from "./commentItem/commentItem"
 import CommentSort from "../../../ui/sort/Sort"
 import styles from "./productComment.module.scss"
 
-const ProductComment = () => {
+const ProductComment = ({ product }: any) => {
   return (
     <div className={styles.ProductComment}>
       <div className={styles.ProductComment__content}>

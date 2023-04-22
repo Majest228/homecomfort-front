@@ -11,8 +11,8 @@ const Basket = () => {
   const [isShow, setIsShow] = useState(false)
   const { user } = useAuth()
 
-  const escape = useRef<HTMLElement>(null)
-  const outside = useRef<HTMLElement>(null)
+  const escape = useRef<any>(null)
+  const outside = useRef<any>(null)
 
   const handleEscape = (event: any) => {
     if (event.keyCode == 27) setIsShow(false)
@@ -28,7 +28,7 @@ const Basket = () => {
 
   const { basket } = useAppSelector((state) => state.basket)
   const summ = basket.reduce(
-    (acc, product) => acc + product.priceWithDiscount * product.count,
+    (acc: any, product: any) => acc + product.priceWithDiscount * product.count,
     0
   )
   const [products, setProducts] = useState([])
@@ -39,7 +39,7 @@ const Basket = () => {
   useEffect(() => {
     getProducts()
   }, [])
-  const selectedProducts = {}
+  const selectedProducts: any = {}
   products.forEach((item: any) =>
     basket.forEach((product: any) => {
       if (item.id == product.id) {
@@ -61,7 +61,7 @@ const Basket = () => {
               <p>Корзина заказов</p>
             </div>
             <div className={styles.basket__form__products}>
-              {basket.map((item) => (
+              {basket.map((item: any) => (
                 <BasketItem
                   id={item.id}
                   description={item.description}

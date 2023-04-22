@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react"
 import styles from "../productList.module.scss"
 import { CatalogInterface } from "./Catalog.interface"
-import Category from "./category/category"
+import Category from "./category/Category"
 import { useAppDispatch, useAppSelector } from "@/app/hook/hook"
 import {
   updateMinPrice,
@@ -17,8 +17,8 @@ const ProductsFilters = () => {
   const [categoriesFull, setCategoriesFull] = useState(true)
   const { resetFilter } = useAppSelector((state) => state.filters)
   const progressRef = useRef<any>(null)
-  const inputs = React.useRef(null)
-  const checkboxes = inputs?.current.querySelectorAll("input")
+  const inputs = React.useRef<any>(null)
+  const checkboxes = inputs?.current?.querySelectorAll("input")
   const handleMax = (e: any) => {
     setMaxValue(e.target.value)
   }
@@ -36,8 +36,8 @@ const ProductsFilters = () => {
   useEffect(() => {
     progressRef.current.style.left = (minValue / 999990) * 100 + "%"
     progressRef.current.style.right = 100 - (maxValue / 999990) * 100 + "%"
-    dispatch(updateMaxPrice(maxValue))
-    dispatch(updateMinPrice(minValue))
+    dispatch(updateMaxPrice(String(maxValue)))
+    dispatch(updateMinPrice(String(minValue)))
   }, [minValue, maxValue])
   const [manufactures, setManufactures] = useState([])
   async function getProducts() {
@@ -52,7 +52,7 @@ const ProductsFilters = () => {
       console.log("test")
       setMinValue(0)
       setMaxValue(999990)
-      checkboxes.forEach((check) => {
+      checkboxes.forEach((check: any) => {
         check.checked = false
       })
       dispatch(changeResetFilter())
@@ -162,7 +162,7 @@ const ProductsFilters = () => {
                 }
                 ref={inputs}
               >
-                {manufactures.map((manufacture) => (
+                {manufactures.map((manufacture: any) => (
                   <Category
                     key={manufacture.id}
                     _id={manufacture.id}

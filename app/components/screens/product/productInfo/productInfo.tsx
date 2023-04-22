@@ -1,7 +1,7 @@
 import React from "react"
 import styles from "./productInfo.module.scss"
 
-const ProductInfo = () => {
+const ProductInfo = ({ product }: any) => {
   return (
     <div className={styles.ProductInfo}>
       <div className={styles.ProductInfo__content}>

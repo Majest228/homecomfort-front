@@ -16,7 +16,7 @@ const ProductBody = ({
   favorite = false,
   basket = false,
   compare,
-}) => {
+}: any) => {
   const stars = ["star", "star", "star", "star", "star"]
   const rating = 4
 

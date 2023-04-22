@@ -1,15 +1,61 @@
-import React from "react"
+import React, { useEffect, useRef, useState } from "react"
 import styles from "../Header.module.scss"
 import arrow from "../../../../assets/arrow.svg"
 import Link from "next/link"
 import Image from "next/image"
+import { useOnClickOutside } from "@/app/hook/hook"
+import apiAxios from "@/app/api/api.interceptor"
+import Cookies from "js-cookie"
 
 const HeaderIntro = () => {
+  const [isShow, setIsShow] = useState(false)
+  const outside = useRef(null)
+  useOnClickOutside(outside, () => setIsShow(false))
+
+  const [cities, setCities] = useState([])
+  async function getCities() {
+    const { data: cities } = await apiAxios.get("city/all")
+    return setCities(cities)
+  }
+  useEffect(() => {
+    getCities()
+  }, [])
+  console.log(cities)
+  const pickCity = localStorage.getItem("city")
+    ? localStorage.getItem("city")
+    : "Невыбран"
   return (
     <div className={styles.header__contentup}>
-      <div className={styles.header__contentup__changeCity}>
-        <Image width={8} height={5} src={arrow} alt={"arrow"} />
-        <span>Москва</span>
+      <div
+        className={styles.header__contentup__changeCity}
+        onClick={() => setIsShow(!isShow)}
+      >
+        <div
+          className={styles.header__contentup__changeCity__show}
+          ref={outside}
+        >
+          <Image width={12} height={9} src={arrow} alt={"arrow"} />
+          <div
+            className={
+              isShow
+                ? styles.header__contentup__changeCity__window
+                : styles.offShow
+            }
+          >
+            {cities.map((city: any) => (
+              <div
+                className={styles.header__contentup__changeCity__window__item}
+                onClick={() => {
+                  setIsShow(!isShow)
+                  localStorage.setItem("city", city.name)
+                }}
+              >
+                <p>{city.name}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <span>{pickCity}</span>
       </div>
       <nav className={styles.header__contentup__navigation}>
         <ul className={styles.header__contentup__navigation__list}>
