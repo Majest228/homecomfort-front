@@ -110,6 +110,7 @@ const ProductList = () => {
                   key={product.id}
                 >
                   <ProductCard
+                    type={false}
                     favorite={favorite.some(
                       (item: any) => item.id == product.id
                     )}
@@ -119,6 +120,7 @@ const ProductList = () => {
                     id={product.id}
                     title={product.title}
                     price={product.price}
+                    description={product.description}
                     priceWithDiscount={product.priceWithDiscount}
                   />
                 </div>

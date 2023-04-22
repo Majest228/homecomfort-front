@@ -15,11 +15,12 @@ const ProductCard = ({
   id,
   favorite = false,
   basket = false,
-  priceWithDiscount = 0,
-  description = "Alia 3-x местный диван, обивка велюр, терракот",
+  priceWithDiscount,
+  description,
   title,
   price,
   compare,
+  type,
 }) => {
   const [getFavorite, setFavorite] = useState(favorite)
   const [getBasket, setBasket] = useState(basket)
@@ -66,28 +67,36 @@ const ProductCard = ({
               styles.ProductCard__content__middle__description__buttons
             }
           >
-            <div
-              className={
-                styles.ProductCard__content__middle__description__buttons__compare
-              }
-              onClick={() => {
-                dispatch(toggleCompare(action))
-                setCompare(!getCompare)
-              }}
-            >
-              <Comparison fill={getCompare ? "#63686D" : "none"} />
-            </div>
-            <div
-              className={
-                styles.ProductCard__content__middle__description__buttons__favorite
-              }
-              onClick={() => {
-                dispatch(toggleFavorite(action))
-                setFavorite(!getFavorite)
-              }}
-            >
-              <Favorite fillInner={getFavorite ? "red" : "none"} />
-            </div>
+            {type ? (
+              ""
+            ) : (
+              <div
+                className={
+                  styles.ProductCard__content__middle__description__buttons__compare
+                }
+                onClick={() => {
+                  dispatch(toggleCompare(action))
+                  setCompare(!getCompare)
+                }}
+              >
+                <Comparison fill={getCompare ? "#63686D" : "none"} />
+              </div>
+            )}
+            {type ? (
+              ""
+            ) : (
+              <div
+                className={
+                  styles.ProductCard__content__middle__description__buttons__favorite
+                }
+                onClick={() => {
+                  dispatch(toggleFavorite(action))
+                  setFavorite(!getFavorite)
+                }}
+              >
+                <Favorite fillInner={getFavorite ? "red" : "none"} />
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -102,22 +111,26 @@ const ProductCard = ({
             <p>{price}тг</p>
           </div>
         </div>
-        <div
-          className={
-            getBasket
-              ? styles.ProductCard__content__bottom__remove
-              : styles.ProductCard__content__bottom__add
-          }
-        >
-          <button
-            onClick={() => {
-              dispatch(toggleBasket(action))
-              setBasket(!getBasket)
-            }}
+        {type ? (
+          ""
+        ) : (
+          <div
+            className={
+              getBasket
+                ? styles.ProductCard__content__bottom__remove
+                : styles.ProductCard__content__bottom__add
+            }
           >
-            <a></a>
-          </button>
-        </div>
+            <button
+              onClick={() => {
+                dispatch(toggleBasket(action))
+                setBasket(!getBasket)
+              }}
+            >
+              <a></a>
+            </button>
+          </div>
+        )}
       </div>
     </div>
   )

@@ -1,7 +1,45 @@
 .ProfilePage {
   margin-top: 40px;
   margin-bottom: 40px;
-
+  &__change {
+    margin-top: 20px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 130%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    color: #005bcc;
+  }
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    &__change {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    &__items {
+      span {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 130%;
+        color: #878787;
+      }
+      p {
+        margin-top: 10px;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 26px;
+        line-height: 150%;
+        color: #1a1a1a;
+      }
+    }
+  }
   &__container {
     max-width: 1260px;
     margin: 0 auto;
@@ -162,7 +200,8 @@
             }
           }
 
-          &__items {}
+          &__items {
+          }
 
           &__product {
             margin-top: 40px;
@@ -192,7 +231,8 @@
                 line-height: 150%;
                 color: #545454;
 
-                &__title {}
+                &__title {
+                }
 
                 &__discount {
                   color: #005bcc;
@@ -213,7 +253,8 @@
               }
             }
 
-            &__right {}
+            &__right {
+            }
           }
 
           &__amount {
@@ -230,5 +271,45 @@
         }
       }
     }
+  }
+}
+.input {
+  border: 1px solid #d1d1d1;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  width: 438px;
+  height: 85px;
+  margin-bottom: 20px;
+  &__content {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 25px;
+  }
+  input {
+    border: none;
+    outline: none;
+    &::placeholder {
+      font-style: normal;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 130%;
+      color: #878787;
+    }
+  }
+  label {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 130%;
+    color: #878787;
+    text-align: left;
+  }
+}
+@media (max-width: 550px) {
+  .input {
+    width: 90%;
   }
 }

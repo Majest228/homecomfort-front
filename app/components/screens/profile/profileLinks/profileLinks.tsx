@@ -7,7 +7,7 @@ const ProfileLinks = () => {
     <div className={styles.ProfilePage__container__content__links}>
       <ul>
         <li>
-          <Link href='/profile/change'>Профиль</Link>
+          <Link href='/profile'>Профиль</Link>
         </li>
         <li>
           <Link href='/profile/orders'>Заказы</Link>

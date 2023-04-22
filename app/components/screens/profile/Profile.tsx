@@ -1,97 +1,145 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
+import apiAxios from "@/app/api/api.interceptor"
 import styles from "./Profile.module.scss"
 import ProfileLinks from "./profileLinks/profileLinks"
-
+import { useGetMeQuery } from "@/app/store/user/user.api"
+import Field from "../../ui/field/Field"
+import { useForm } from "react-hook-form"
+import Cookies from "js-cookie"
 const ProfilePage = () => {
+  const [typetest, setType] = useState(false)
+
+  const { data, isLoading } = useGetMeQuery("")
+  const resALL = useGetMeQuery("")
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [login, setLogin] = useState("")
+  const [pass, setPass] = useState("")
+
+  useEffect(() => {
+    apiAxios
+      .get("user/profile", {
+        headers: {
+          Authorization: `Bearer ${Cookies.get("accessToken")}`,
+        },
+      })
+      .then((res) => {
+        setName(res.data.name)
+        setEmail(res.data.email)
+        setLogin(res.data.login)
+      })
+  }, [])
+  const updateUser = async ({ login, name, email, pass }: any) => {
+    await apiAxios.put(
+      `user/profile/update`,
+      {
+        login,
+        name,
+        email,
+        password: pass,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${Cookies.get("accessToken")}`,
+        },
+      }
+    )
+    resALL.refetch()
+  }
+
   return (
     <div className={styles.ProfilePage}>
       <div className={styles.ProfilePage__container}>
         <div className={styles.ProfilePage__container__content}>
           <div className={styles.ProfilePage__container__content__title}>
-            <p>Изменение профиля</p>
+            <p>Данные профиля</p>
           </div>
           <ProfileLinks />
-          <div className={styles.ProfilePage__container__content__form}>
-            <form>
-              <div
-                className={styles.ProfilePage__container__content__form__left}
+          <div className={styles.ProfilePage__content}>
+            {typetest ? (
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault()
+                  updateUser({ login, name, email, pass })
+                  setType(false)
+                }}
               >
-                <div
-                  className={
-                    styles.ProfilePage__container__content__form__personal
-                  }
-                >
-                  <p>Персональные данные</p>
+                <div className={styles.ProfilePage__content__change}>
+                  <div className={styles.input}>
+                    <div className={styles.input__content}>
+                      <input
+                        placeholder='Дмитрий'
+                        onChange={(e) => setName(e.target.value)}
+                        value={name}
+                      />
+                      <label>Имя</label>
+                    </div>
+                  </div>
+                  <div className={styles.input}>
+                    <div className={styles.input__content}>
+                      <input
+                        placeholder='test@gmail.com'
+                        onChange={(e) => setEmail(e.target.value)}
+                        value={email}
+                      />
+                      <label>Почта</label>
+                    </div>
+                  </div>
+                  <div className={styles.input}>
+                    <div className={styles.input__content}>
+                      <input
+                        placeholder='Test'
+                        onChange={(e) => setLogin(e.target.value)}
+                        value={login}
+                      />
+                      <label>Логин</label>
+                    </div>
+                  </div>
+                  <div className={styles.input}>
+                    <div className={styles.input__content}>
+                      <input
+                        placeholder='*****'
+                        onChange={(e) => setPass(e.target.value)}
+                      />
+                      <label>Пароль</label>
+                    </div>
+                  </div>
                 </div>
-                <div
-                  className={
-                    styles.ProfilePage__container__content__form__input
-                  }
-                >
-                  <input type={"text"} placeholder='Введите имя' />
+                <button type='submit' className={styles.ProfilePage__change}>
+                  Сохранить данные
+                </button>
+              </form>
+            ) : (
+              <>
+                <div className={styles.ProfilePage__content__items}>
+                  <span>Имя</span>
+                  <p>{isLoading ? "" : data.name}</p>
                 </div>
-                <div
-                  className={
-                    styles.ProfilePage__container__content__form__input
-                  }
-                >
-                  <input type={"tel"} placeholder='Введите телефон' />
+                <div className={styles.ProfilePage__content__items}>
+                  <span>Электронная почта</span>
+                  <p>{isLoading ? "" : data.email}</p>
                 </div>
-                <div
-                  className={
-                    styles.ProfilePage__container__content__form__input
-                  }
-                >
-                  <input type={"email"} placeholder='Введите почту' />
+                <div className={styles.ProfilePage__content__items}>
+                  <span>Логин</span>
+                  <p>{isLoading ? "" : data.login}</p>
                 </div>
-              </div>
-              <div
-                className={styles.ProfilePage__container__content__form__right}
-              >
-                <div
-                  className={
-                    styles.ProfilePage__container__content__form__personal
-                  }
-                >
-                  <p>Изменение пароля</p>
+                <div className={styles.ProfilePage__content__items}>
+                  <span>Номер телефона</span>
+                  <p>{isLoading ? "" : data.phone}</p>
                 </div>
-                <div
-                  className={
-                    styles.ProfilePage__container__content__form__input
-                  }
-                >
-                  <input
-                    type={"password"}
-                    placeholder='Введите текущий пароль'
-                  />
-                </div>
-                <div
-                  className={
-                    styles.ProfilePage__container__content__form__input
-                  }
-                >
-                  <input type={"password"} placeholder='Введите новый пароль' />
-                </div>
-                <div
-                  className={
-                    styles.ProfilePage__container__content__form__input
-                  }
-                >
-                  <input
-                    type={"password"}
-                    placeholder='Повторите новый пароль'
-                  />
-                </div>
-                <div
-                  className={
-                    styles.ProfilePage__container__content__form__submit
-                  }
-                >
-                  <button>Изменить данные</button>
-                </div>
-              </div>
-            </form>
+              </>
+            )}
           </div>
+          {typetest ? (
+            <></>
+          ) : (
+            <button
+              onClick={() => setType(true)}
+              className={styles.ProfilePage__change}
+            >
+              Изменить данные
+            </button>
+          )}
         </div>
       </div>
     </div>
