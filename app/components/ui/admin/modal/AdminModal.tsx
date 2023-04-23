@@ -9,7 +9,7 @@ import apiAxios from "@/app/api/api.interceptor"
 import Cookies from "js-cookie"
 import axios from "axios"
 
-const AdminModal = ({ index, setIsShow }) => {
+const AdminModal = ({ index, setIsShow }: any) => {
   const result = useGetByIdQuery("")
   const resALL = useGetAllQuery("")
   const { data, isLoading } = useGetByIdQuery(index)
@@ -34,7 +34,7 @@ const AdminModal = ({ index, setIsShow }) => {
   }, [])
   const idUser = isLoading ? 0 : data?.id
 
-  const updateUser = async ({ id, login, email, password, phone }) => {
+  const updateUser = async ({ id, login, email, password, phone }: any) => {
     await apiAxios.put(
       `user/admin/updateAccount/${id}`,
       {

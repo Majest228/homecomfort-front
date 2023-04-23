@@ -50,7 +50,7 @@ const ProfileOrderInfo = () => {
               >
                 {isLoading
                   ? []
-                  : data.map((order) => <OrderItem order={order} />)}
+                  : data.map((order: any) => <OrderItem order={order} />)}
                 {/*<OrderItem data={data} />*/}
                 {/*<OrderItem />*/}
               </div>

@@ -6,6 +6,7 @@ import { saveToStorage } from "../auth/auth.helper"
 
 export const register: any = createAsyncThunk<AuthInterface, IAuthForm>(
   "auth/register",
+  //@ts-ignore
   async ({ email, password, login }: IAuthForm) => {
     try {
       const response = await AuthService.register(email, password, login)
@@ -18,6 +19,7 @@ export const register: any = createAsyncThunk<AuthInterface, IAuthForm>(
 
 export const login: any = createAsyncThunk<AuthInterface, IAuthForm>(
   "auth/login",
+  //@ts-ignore
   async ({ email, password }: IAuthForm) => {
     try {
       const response = await AuthService.login(email, password)

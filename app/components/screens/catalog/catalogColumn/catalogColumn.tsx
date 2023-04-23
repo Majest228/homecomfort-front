@@ -22,6 +22,7 @@ const CatalogColumn = ({ category }: any) => {
               >
                 <Link
                   href={"/products"}
+                  //@ts-ignore
                   onClick={() => dispatch(updateCategory([item.id, item.name]))}
                 >
                   {item.name}

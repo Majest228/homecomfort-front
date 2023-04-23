@@ -16,7 +16,9 @@ const CatalogPage = () => {
         <div className={styles.CatalogPage__container__content}>
           {isLoading
             ? []
-            : data?.map((category) => <CatalogColumn category={category} />)}
+            : data?.map((category: any) => (
+                <CatalogColumn category={category} />
+              ))}
         </div>
       </div>
     </div>

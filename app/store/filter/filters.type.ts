@@ -1,5 +1,5 @@
 export default interface IFilter {
-  categoryId: [string, string]
+  categoryId: string[]
   title: [string]
   price: [number, number]
   resetFilter: boolean

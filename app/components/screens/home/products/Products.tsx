@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query"
 import { ProductService } from "@/app/services/product/product.service"
 import apiAxios from "@/app/api/api.interceptor"
 import { useRouter } from "next/router"
+import { IProduct } from "@/app/services/product/product.interface"
 
 const Products = ({ title, products }: any) => {
   const { favorite } = useAppSelector((state) => state.favorites)
@@ -18,7 +19,7 @@ const Products = ({ title, products }: any) => {
           <h3>{title}</h3>
         </div>
         <div className={styles.producstHome__content__products}>
-          {products.slice(0, 3).map((product) => (
+          {products.slice(0, 3).map((product: IProduct) => (
             <ProductCard
               favorite={favorite.some((item: any) => item.id == product.id)}
               basket={basket.some((item: any) => item.id == product.id)}

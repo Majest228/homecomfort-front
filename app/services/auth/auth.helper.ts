@@ -15,7 +15,7 @@ export const getUserFromStorage = () => {
   return JSON.parse(localStorage.getItem("user") || "{}")
 }
 
-export const saveToStorage = (data) => {
+export const saveToStorage = (data: any) => {
   saveTokensStorage(data)
   localStorage.setItem("user", JSON.stringify(data.user))
 }

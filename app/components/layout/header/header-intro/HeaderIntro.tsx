@@ -20,7 +20,6 @@ const HeaderIntro = () => {
   useEffect(() => {
     getCities()
   }, [])
-  console.log(cities)
   const pickCity = localStorage.getItem("city")
     ? localStorage.getItem("city")
     : "Невыбран"

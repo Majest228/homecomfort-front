@@ -7,6 +7,7 @@ import { useState } from "react"
 import CreateProduct from "@/app/components/ui/create-product/CreateProduct"
 import UpdateProducts from "@/app/components/ui/create-product/UpdateProducts"
 import ProductCard from "@/app/components/ui/card-item/productCard"
+import { IProduct } from "@/app/services/product/product.interface"
 
 const AdminProducts = () => {
   const result = useGetAllProdutsQuery("")
@@ -48,7 +49,7 @@ const AdminProducts = () => {
           <div className={styles.admin__users__content__items}>
             {isLoading
               ? []
-              : data?.map((item, id) => (
+              : data?.map((item: IProduct, id: any) => (
                   <div className={styles.admin__users__content__items__item}>
                     <ProductCard
                       type={true}

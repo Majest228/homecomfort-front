@@ -21,7 +21,7 @@ const ProductCard = ({
   price,
   compare,
   type,
-}) => {
+}: any) => {
   const [getFavorite, setFavorite] = useState(favorite)
   const [getBasket, setBasket] = useState(basket)
   const [getCompare, setCompare] = useState(compare)

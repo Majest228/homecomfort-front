@@ -14,6 +14,7 @@ const OrderInfo = dynamic(
 )
 
 const ProfileOrderInfo = ({ orderItem }: any) => {
+  //@ts-ignore
   return <OrderInfo orderItem={orderItem} />
 }
 

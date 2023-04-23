@@ -5,6 +5,7 @@ import {
 import styles from "../Admin.module.scss"
 import { useState } from "react"
 import AdminModal from "@/app/components/ui/admin/modal/AdminModal"
+import { IUser } from "@/app/services/user/user.interface"
 
 const AdminUsers = () => {
   const result = useGetAllQuery("")
@@ -16,7 +17,7 @@ const AdminUsers = () => {
     deleteUser(id)
     result.refetch()
   }
-
+  console.log(data)
   const [isShow, setIsShow] = useState(false)
   return (
     <div className={styles.admin__users}>
@@ -31,7 +32,7 @@ const AdminUsers = () => {
           <div className={styles.admin__users__content__items}>
             {isLoading
               ? []
-              : data?.map((item, id) => (
+              : data?.map((item: IUser, id: any) => (
                   <div className={styles.admin__users__content__items__item}>
                     <div
                       className={

@@ -3,7 +3,7 @@ import styles from "./CreateProduct.module.scss"
 import { useState } from "react"
 import Cookies from "js-cookie"
 import Field from "../field/Field"
-const CreateProduct = ({ result, setIsShowCreate }) => {
+const CreateProduct = ({ result, setIsShowCreate }: any) => {
   const [title, setTitle] = useState("")
   const [slug, setSlug] = useState("")
   const [description, setDescription] = useState("")

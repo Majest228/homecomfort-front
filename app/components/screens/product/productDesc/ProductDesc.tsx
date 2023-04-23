@@ -2,7 +2,7 @@ import React from "react"
 import ProductColumn from "./productColumn/productColumn"
 import styles from "./ProductDesc.module.scss"
 
-const ProductDesc = ({ product }) => {
+const ProductDesc = ({ product }: any) => {
   return (
     <div className={styles.ProductDesc}>
       <div className={styles.ProductDesc__content}>

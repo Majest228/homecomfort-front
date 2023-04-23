@@ -9,6 +9,7 @@ import { useAuth } from "@/app/hook/useAuth"
 import Link from "next/link"
 import { clearBasket, setOrderId } from "@/app/store/basket/basket.slice"
 import axios from "axios"
+import { IProduct } from "@/app/services/product/product.interface"
 
 const OrderingItem = dynamic(() => import("./orderingItem/orderingItem"), {
   ssr: false,
@@ -22,7 +23,7 @@ const Ordering = () => {
   const dispatch = useAppDispatch()
   const { data, isLoading } = useGetMeQuery("")
   const summ = basket.reduce(
-    (acc, product) => acc + product.priceWithDiscount * product.count,
+    (acc: any, product: any) => acc + product.priceWithDiscount * product.count,
     0
   )
   const [products, setProducts] = useState([])
@@ -54,11 +55,10 @@ const Ordering = () => {
             Authorization: `Bearer ${Cookies.get("accessToken")}`,
           },
         }
-
       )
       .then((res) => {
         dispatch(setOrderId(res.data.id))
-        basket.forEach((item) =>
+        basket.forEach((item: any) =>
           apiAxios.post(
             `order/orderitem/${res.data.id}`,
             {
@@ -146,7 +146,7 @@ const Ordering = () => {
                 <OrderingItem
                   price={selectedProducts[product.id]?.priceWithDiscount}
                   count={product.count}
-                  description={product.description}
+                  description={product.title}
                 />
               ))}
             </div>

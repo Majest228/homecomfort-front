@@ -4,7 +4,9 @@ import Cookies from "js-cookie"
 const basketSlice = createSlice({
   name: "basket",
   initialState: {
+    //@ts-ignore
     basket: Cookies.get("basket") ? JSON.parse(Cookies.get("basket")) : [],
+    //@ts-ignore
     orderId: Cookies.get("orderId") ? JSON.parse(Cookies.get("orderId")) : 0,
   },
   reducers: {
@@ -29,7 +31,7 @@ const basketSlice = createSlice({
       Cookies.set("basket", JSON.stringify(state.basket))
     },
     changeCount(state, action) {
-      state.basket.map((item) =>
+      state.basket.map((item: any) =>
         item.id == action.payload.id
           ? (item.count = action.payload.value)
           : item
@@ -37,7 +39,7 @@ const basketSlice = createSlice({
       Cookies.set("basket", JSON.stringify(state.basket))
     },
     plusCount(state, action) {
-      state.basket.map((item) =>
+      state.basket.map((item: any) =>
         item.id == action.payload.id
           ? item.count <= 100
             ? (item.count = item.count + 1)
@@ -46,8 +48,8 @@ const basketSlice = createSlice({
       )
       Cookies.set("basket", JSON.stringify(state.basket))
     },
-    minusCount(state) {
-      state.basket.map((item) =>
+    minusCount(state, action) {
+      state.basket.map((item: any) =>
         item.id == action.payload.id
           ? item.count >= 0
             ? (item.count = item.count - 1)

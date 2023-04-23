@@ -64,7 +64,7 @@ const Basket = () => {
               {basket.map((item: any) => (
                 <BasketItem
                   id={item.id}
-                  description={item.description}
+                  description={item.title}
                   priceWithDiscount={
                     selectedProducts[item.id].priceWithDiscount
                   }

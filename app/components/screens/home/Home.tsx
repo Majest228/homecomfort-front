@@ -5,12 +5,13 @@ import Concepts from "@/app/components/screens/home/concepts/Concepts"
 import Brands from "@/app/components/screens/home/brands/Brands"
 import Advantages from "@/app/components/screens/home/advantages/Advantages"
 import dynamic from "next/dynamic"
+import { IProduct } from "@/app/services/product/product.interface"
 
 const Products = dynamic(() => import("./products/Products"), {
   ssr: false,
 })
 
-const HomePage = ({ products }) => {
+const HomePage = ({ products }: any) => {
   console.log(products, "prod")
   return (
     <div className={styles.home}>

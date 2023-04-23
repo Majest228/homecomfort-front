@@ -8,7 +8,7 @@ import { validEmail } from "./auth.valid"
 import LoginIco from "../svg/login"
 import { useAction } from "@/app/hook/useAction"
 
-const AuthForm = () => {
+const AuthForm = (str: any) => {
   const [type, setType] = useState("login")
   const [isShow, setIsShow] = useState(false)
   const { register: registerAuth, login } = useAction()
@@ -65,9 +65,11 @@ const AuthForm = () => {
       </div>
 
       {isShow && (
+        //@ts-ignore
         <div className={styles.auth__modal} ref={escape}>
           <form
             className={styles.auth__form}
+            //@ts-ignore
             ref={outside}
             onSubmit={handleSubmit(onSubmit)}
           >
@@ -134,6 +136,7 @@ const AuthForm = () => {
                 <button
                   onClick={(e) => {
                     e.preventDefault()
+                    //@ts-ignore
                     setType(type == "register" ? "login" : "register")
                   }}
                   className={styles.auth__swap}

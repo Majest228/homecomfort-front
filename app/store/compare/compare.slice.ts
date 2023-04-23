@@ -4,6 +4,7 @@ import Cookies from "js-cookie"
 const compareSlice = createSlice({
   name: "compare",
   initialState: {
+    //@ts-ignore
     compare: Cookies.get("compare") ? JSON.parse(Cookies.get("compare")) : [],
   },
   reducers: {

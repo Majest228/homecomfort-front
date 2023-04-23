@@ -5,7 +5,8 @@ const favoriteSlice = createSlice({
   name: "favorite",
   initialState: {
     favorite: Cookies.get("favorite")
-      ? JSON.parse(Cookies.get("favorite"))
+      ? //@ts-ignore
+        JSON.parse(Cookies.get("favorite"))
       : [],
   },
   reducers: {

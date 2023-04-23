@@ -23,7 +23,7 @@ const BasketItem = ({
 
   const [value, setValue] = useState(count)
 
-  const handleChange = (val) => {
+  const handleChange = (val: number) => {
     const value = Math.max(min, Math.min(max, Number(val)))
     dispatch(
       changeCount({
@@ -96,7 +96,7 @@ const BasketItem = ({
               value={value}
               defaultValue={count}
               onChange={(e) => {
-                handleChange(e.target.value)
+                handleChange(+e.target.value)
               }}
             />
           </div>
