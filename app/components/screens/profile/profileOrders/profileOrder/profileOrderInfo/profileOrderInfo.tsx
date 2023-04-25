@@ -12,6 +12,12 @@ const ProfileOrderInfo = () => {
   const { data, isLoading } = useGetAllOrderItemByIdQuery(orderId)
 
   console.log(data, "data - single")
+  const summ = data?.reduce(
+    (acc: number, product: any) =>
+      acc + product.product.priceWithDiscount * product.count,
+    0
+  )
+  console.log(summ)
   return (
     <div className={styles.ProfilePage}>
       <div className={styles.ProfilePage__container}>
@@ -50,7 +56,9 @@ const ProfileOrderInfo = () => {
               >
                 {isLoading
                   ? []
-                  : data.map((order: any) => <OrderItem order={order} />)}
+                  : data.map((order: any) => (
+                      <OrderItem order={order} count={order.count} />
+                    ))}
                 {/*<OrderItem data={data} />*/}
                 {/*<OrderItem />*/}
               </div>
@@ -59,7 +67,7 @@ const ProfileOrderInfo = () => {
                   styles.ProfilePage__container__content__order__content__amount
                 }
               >
-                <p>Общая сумма: 59980тг</p>
+                <p>Общая сумма: {summ}тг</p>
               </div>
             </div>
           </div>

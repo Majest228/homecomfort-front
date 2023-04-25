@@ -35,7 +35,7 @@ const Header = () => {
         <div className={styles.header__content}>
           <div className={styles.header__content__logo}>
             <Link className={styles.header__content__logo__link} href='/'>
-              Home<span>Comfort</span>
+              Gruvi<span>bed</span>
             </Link>
           </div>
           <button className={styles.header__content__catalog}>

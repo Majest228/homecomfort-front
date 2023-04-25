@@ -63,6 +63,7 @@ const Ordering = () => {
             `order/orderitem/${res.data.id}`,
             {
               productId: item.id,
+              count: item.count,
             },
             {
               headers: {

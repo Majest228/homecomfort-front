@@ -3,7 +3,7 @@ import styles from "../../../../Profile.module.scss"
 import Image from "next/image"
 import Product from "../../../../../../../assets/productItem.jpg"
 
-const OrderItem = ({ order }: any) => {
+const OrderItem = ({ order, count }: any) => {
   const { product } = order
   return (
     <div
@@ -40,14 +40,19 @@ const OrderItem = ({ order }: any) => {
               styles.ProfilePage__container__content__order__content__product__left__description__discount
             }
           >
-            Скидка: 14%
+            Скидка:{" "}
+            {(
+              100 -
+              (product.priceWithDiscount * 100) / product.price
+            ).toFixed()}
+            %
           </p>
           <p
             className={
               styles.ProfilePage__container__content__order__content__product__left__description__price
             }
           >
-            Цена: {product.price} тг.
+            Цена: {product.priceWithDiscount} тг.
           </p>
         </div>
       </div>
@@ -61,7 +66,7 @@ const OrderItem = ({ order }: any) => {
             styles.ProfilePage__container__content__order__content__product__middle__title
           }
         >
-          <p>Количество: 1</p>
+          <p>Количество: {count}</p>
         </div>
       </div>
       <div
@@ -74,7 +79,7 @@ const OrderItem = ({ order }: any) => {
             styles.ProfilePage__container__content__order__content__product__right__title
           }
         >
-          <p>Сумма: 29990тг</p>
+          <p>Сумма: {product.priceWithDiscount * count}тг</p>
         </div>
       </div>
     </div>

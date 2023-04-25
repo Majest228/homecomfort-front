@@ -32,7 +32,7 @@ const AdminProducts = () => {
             Админ панель - Товары
           </h3>
           <p className={styles.admin__users__content__count}>
-            Количество пользователей - {isLoading ? 0 : data.length}
+            Количество товаров - {isLoading ? 0 : data.length}
           </p>
           <button
             onClick={() => setIsShowCreate(true)}
