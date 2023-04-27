@@ -133,6 +133,40 @@
       align-items: center;
       text-align: center;
       gap: 40px;
+      &__profile {
+        border: none;
+        background: none;
+        cursor: pointer;
+        position: relative;
+        &__block {
+          position: absolute;
+          width: 120px;
+          height: 100px;
+          background: #e0eeff;
+          border-radius: 5px;
+          a {
+            display: block;
+            text-decoration: none;
+            margin-top: 20px;
+            font-size: 20px;
+            color: black;
+          }
+          button {
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 20px;
+          }
+        }
+        p {
+          font-style: normal;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 130%;
+          text-align: center;
+          color: #63686d;
+        }
+      }
       &__comparison {
         display: flex;
         flex-direction: column;

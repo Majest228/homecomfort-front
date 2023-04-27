@@ -69,7 +69,7 @@ const HeaderIntro = () => {
           <li className={styles.header__contentup__navigation__list__item}>
             <Link
               className={styles.header__contentup__navigation__list__item__link}
-              href='/'
+              href='/contacts'
             >
               О компании
             </Link>
@@ -77,7 +77,7 @@ const HeaderIntro = () => {
           <li className={styles.header__contentup__navigation__list__item}>
             <Link
               className={styles.header__contentup__navigation__list__item__link}
-              href='/'
+              href='/delivery'
             >
               Доставка и оплата
             </Link>
@@ -90,7 +90,7 @@ const HeaderIntro = () => {
               Контакты магазинов
             </Link>
           </li>
-          <p>8 969 677 76 76</p>
+          <p>8 777 777 77 77</p>
         </ul>
       </nav>
     </div>

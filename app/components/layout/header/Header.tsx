@@ -1,11 +1,9 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import styles from "./Header.module.scss"
 import search from "../../../assets/search.svg"
 import catalog from "../../../assets/catalog.svg"
 import comparison from "../../../assets/comparison.svg"
 import favourite from "../../../assets/favourite.svg"
-import login from "../../../assets/login.svg"
-import cart from "../../../assets/cart.svg"
 
 import Link from "next/link"
 import Image from "next/image"
@@ -19,8 +17,13 @@ import { UserService } from "@/app/services/user/user.service"
 import { useGetMeQuery } from "@/app/store/user/user.api"
 import { useAppDispatch } from "@/app/hook/hook"
 import { updateCategory, updateSearch } from "@/app/store/filter/filters.slice"
+import LoginIco from "../../ui/svg/login"
+import Cookies from "js-cookie"
+import { useRouter } from "next/router"
+import { logout } from "@/app/services/user/user.slice"
 
 const Header = () => {
+  const router = useRouter()
   const { user } = useAuth()
   const result = useGetMeQuery("")
   const { data, isLoading } = useGetMeQuery("")
@@ -28,6 +31,7 @@ const Header = () => {
     user ? result.refetch() : ""
   }, [user])
   const dispatch = useAppDispatch()
+  const [show, setShow] = useState(false)
   return (
     <header className={styles.header}>
       <div className={styles.header__container}>
@@ -79,9 +83,35 @@ const Header = () => {
             } */}
             {user ? (
               <div>
-                <Link href={`/profile`}>{isLoading ? "" : data?.login}</Link>
+                <button
+                  onClick={() => setShow(!show)}
+                  className={styles.header__content__navigation__profile}
+                >
+                  <LoginIco />
+                  <p>Профиль</p>
+                </button>
+                {show ? (
+                  <div
+                    className={
+                      styles.header__content__navigation__profile__block
+                    }
+                  >
+                    <Link href={`/profile`}>Профиль</Link>
+                    <button
+                      onClick={() => {
+                        dispatch(logout())
+                        router.replace("/")
+                      }}
+                    >
+                      Выйти
+                    </button>
+                  </div>
+                ) : (
+                  ""
+                )}
               </div>
             ) : (
+              // href={`/profile`}
               <AuthForm str={"login"} />
             )}
             {/* {user ? !isLoading ? (

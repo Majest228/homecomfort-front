@@ -42,12 +42,12 @@ const ProductBody = ({
       <div className={styles.ProductBody__content}>
         <div className={styles.ProductBody__content__left}>
           <div className={styles.ProductBody__content__left__main}>
-            <Image src={ProductImg} alt='' />
-          </div>
-          <div className={styles.ProductBody__content__left__additionally}>
-            <Image src={ProductImg} alt='' width={175} height={100} />
-            <Image src={ProductImg} alt='' width={175} height={100} />
-            <Image src={ProductImg} alt='' width={175} height={100} />
+            <Image
+              src={`http://localhost:8080/api/files/${product.productPath}`}
+              alt=''
+              width={553}
+              height={284}
+            />
           </div>
         </div>
         <div className={styles.ProductBody__content__right}>

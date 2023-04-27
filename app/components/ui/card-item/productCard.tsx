@@ -21,6 +21,7 @@ const ProductCard = ({
   price,
   compare,
   type,
+  product,
 }: any) => {
   const [getFavorite, setFavorite] = useState(favorite)
   const [getBasket, setBasket] = useState(basket)
@@ -41,20 +42,15 @@ const ProductCard = ({
   return (
     <div className={styles.ProductCard__content}>
       <div className={styles.ProductCard__content__top}>
-        <div className={styles.ProductCard__content__top__status}>
-          <div className={styles.ProductCard__content__top__status__value}>
-            <p>Хит</p>
-          </div>
-          <div className={styles.ProductCard__content__top__status__value}>
-            <p>Новинка</p>
-          </div>
-          <div className={styles.ProductCard__content__top__status__value}>
-            <p>-{(100 - (priceWithDiscount * 100) / price).toFixed()}%</p>
-          </div>
-        </div>
+        <div className={styles.ProductCard__content__top__status}></div>
         <Link href={`products/product/${id}`} className={styles.ProductCard}>
           <div className={styles.ProductCard__content__top__img}>
-            <Image src={Sofa} alt='' />
+            <Image
+              src={`http://localhost:8080/api/files/${product.productPath}`}
+              width={399}
+              height={244.92}
+              alt=''
+            />
           </div>
         </Link>
       </div>
