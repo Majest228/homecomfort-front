@@ -12,11 +12,12 @@ const Products = dynamic(() => import("./products/Products"), {
 })
 
 const HomePage = ({ products }: any) => {
-  console.log(products, "prod")
+  const newProducts = products.sort(() => Math.random() - 0.5)
+
   return (
     <div className={styles.home}>
       <div className={styles.home__container}>
-        <Products products={products} title='Хит продажи' />
+        <Products products={newProducts} title='Хит продажи' />
         <Concepts />
         <Products products={products} title='Новинки' />
         <Advantages />

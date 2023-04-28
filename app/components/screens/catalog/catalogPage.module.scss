@@ -12,9 +12,8 @@
       }
     }
     &__content {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: 300px 300px 300px 300px;
       &__column {
         min-width: 20%;
         margin-bottom: 75px;

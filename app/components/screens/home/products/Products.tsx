@@ -13,8 +13,6 @@ const Products = ({ title, products }: any) => {
   const { basket } = useAppSelector((state) => state.basket)
   const { compare } = useAppSelector((state) => state.compare)
 
-  const newProducts = products.sort(() => Math.random() - 0.5)
-
   return (
     <div className={styles.producstHome}>
       <div className={styles.producstHome__content}>
@@ -22,7 +20,7 @@ const Products = ({ title, products }: any) => {
           <h3>{title}</h3>
         </div>
         <div className={styles.producstHome__content__products}>
-          {newProducts.slice(0, 3).map((product: IProduct) => (
+          {products.slice(0, 3).map((product: IProduct) => (
             <ProductCard
               product={product}
               favorite={favorite.some((item: any) => item.id == product.id)}
@@ -33,6 +31,7 @@ const Products = ({ title, products }: any) => {
               title={product.title}
               price={product.price}
               priceWithDiscount={product.priceWithDiscount}
+              productPath={product.productPath}
             />
           ))}
         </div>

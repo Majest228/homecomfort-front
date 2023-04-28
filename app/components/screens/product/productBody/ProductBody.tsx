@@ -24,7 +24,7 @@ const ProductBody = ({
     id: product.id,
     favorite,
     basket,
-    discount: 0,
+    priceWithDiscount: product.priceWithDiscount,
     description: product.description,
     price: product.price,
     title: product.title,
@@ -152,7 +152,7 @@ const ProductBody = ({
                     setBasket(!getBasket)
                   }}
                 >
-                  {getBasket ? "Добавить в корзину" : "Удалить из корзины"}
+                  {getBasket ? "Удалить из корзины" : "Добавить в корзину"}
                 </button>
               </div>
             </div>

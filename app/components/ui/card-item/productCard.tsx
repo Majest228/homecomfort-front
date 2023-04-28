@@ -22,6 +22,7 @@ const ProductCard = ({
   compare,
   type,
   product,
+  productPath,
 }: any) => {
   const [getFavorite, setFavorite] = useState(favorite)
   const [getBasket, setBasket] = useState(basket)
@@ -36,6 +37,7 @@ const ProductCard = ({
     title,
     count: 1,
     compare,
+    productPath,
   }
   const dispatch = useAppDispatch()
 
@@ -46,7 +48,9 @@ const ProductCard = ({
         <Link href={`products/product/${id}`} className={styles.ProductCard}>
           <div className={styles.ProductCard__content__top__img}>
             <Image
-              src={`http://localhost:8080/api/files/${product.productPath}`}
+              src={`http://localhost:8080/api/files/${
+                product.productPath || productPath
+              }`}
               width={399}
               height={244.92}
               alt=''

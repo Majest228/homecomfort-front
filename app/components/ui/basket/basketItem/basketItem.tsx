@@ -11,6 +11,7 @@ import {
   toggleBasket,
 } from "@/app/store/basket/basket.slice"
 const BasketItem = ({
+  img,
   id,
   description,
   priceWithDiscount,
@@ -37,7 +38,12 @@ const BasketItem = ({
     <div className={styles.basket__form__products__product}>
       <div className={styles.basket__form__products__product__left}>
         <div className={styles.basket__form__products__product__left__img}>
-          <Image src={Product} alt='' />
+          <Image
+            src={`http://localhost:8080/api/files/${img}`}
+            alt=''
+            width={150}
+            height={80}
+          />
         </div>
         <div
           className={styles.basket__form__products__product__left__description}

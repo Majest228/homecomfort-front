@@ -15,7 +15,7 @@ const ProfilePage = () => {
   const [email, setEmail] = useState("")
   const [login, setLogin] = useState("")
   const [pass, setPass] = useState("")
-
+  const [address, setAddress] = useState("")
   useEffect(() => {
     apiAxios
       .get("user/profile", {
@@ -27,6 +27,7 @@ const ProfilePage = () => {
         setName(res.data.name)
         setEmail(res.data.email)
         setLogin(res.data.login)
+        setAddress(res.data.setAddress)
       })
   }, [])
   const updateUser = async ({ login, name, email, pass }: any) => {
@@ -37,6 +38,7 @@ const ProfilePage = () => {
         name,
         email,
         password: pass,
+        address,
       },
       {
         headers: {
@@ -46,7 +48,7 @@ const ProfilePage = () => {
     )
     resALL.refetch()
   }
-
+  console.log(data)
   return (
     <div className={styles.ProfilePage}>
       <div className={styles.ProfilePage__container}>
@@ -104,6 +106,16 @@ const ProfilePage = () => {
                       <label>Пароль</label>
                     </div>
                   </div>
+                  <div className={styles.input}>
+                    <div className={styles.input__content}>
+                      <input
+                        placeholder='Улица бейбитшелик'
+                        onChange={(e) => setAddress(e.target.value)}
+                        value={address}
+                      />
+                      <label>Адрес</label>
+                    </div>
+                  </div>
                 </div>
                 <button type='submit' className={styles.ProfilePage__change}>
                   Сохранить данные
@@ -124,8 +136,8 @@ const ProfilePage = () => {
                   <p>{isLoading ? "" : data.login}</p>
                 </div>
                 <div className={styles.ProfilePage__content__items}>
-                  <span>Номер телефона</span>
-                  <p>{isLoading ? "" : data.phone}</p>
+                  <span>Адрес</span>
+                  <p>{isLoading ? "" : data.address}</p>
                 </div>
               </>
             )}

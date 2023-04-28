@@ -25,4 +25,5 @@ export interface IProduct {
   articul: number
   title: string
   priceWithDiscount: number
+  productPath: string
 }

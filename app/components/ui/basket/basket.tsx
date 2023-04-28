@@ -47,6 +47,17 @@ const Basket = () => {
       }
     })
   )
+  useEffect(() => {
+    if (isShow) {
+      document.body.style.overflow = "hidden"
+      document.body.style.top = `-${window.scrollY}px`
+    } else {
+      document.body.style.overflow = ""
+      window.onscroll = () => {
+        window.scroll()
+      }
+    }
+  }, [isShow])
 
   return (
     <div className={styles.basket__wrapper}>
@@ -70,6 +81,7 @@ const Basket = () => {
                   }
                   price={selectedProducts[item.id].price}
                   count={item.count}
+                  img={selectedProducts[item.id].productPath}
                 />
               ))}
             </div>

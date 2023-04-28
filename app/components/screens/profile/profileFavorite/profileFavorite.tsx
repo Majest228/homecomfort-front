@@ -24,6 +24,8 @@ const ProfileFavorite = () => {
                 price={item.price}
                 priceWithDiscount={item.priceWithDiscount}
                 title={item.title}
+                product={item}
+                productPath={item.productPath}
                 favorite={favorite.some(
                   (product: any) => item.id == product.id
                 )}

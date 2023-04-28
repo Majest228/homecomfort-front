@@ -17,7 +17,7 @@ const ProfileOrderInfo = () => {
       acc + product.product.priceWithDiscount * product.count,
     0
   )
-  console.log(summ)
+  console.log(data)
   return (
     <div className={styles.ProfilePage}>
       <div className={styles.ProfilePage__container}>
@@ -57,7 +57,11 @@ const ProfileOrderInfo = () => {
                 {isLoading
                   ? []
                   : data.map((order: any) => (
-                      <OrderItem order={order} count={order.count} />
+                      <OrderItem
+                        order={order}
+                        count={order.count}
+                        productPath={order.product.productPath}
+                      />
                     ))}
                 {/*<OrderItem data={data} />*/}
                 {/*<OrderItem />*/}

@@ -122,6 +122,7 @@ const ProductList = () => {
                     price={product.price}
                     description={product.description}
                     priceWithDiscount={product.priceWithDiscount}
+                    product={product}
                   />
                 </div>
               ))}
