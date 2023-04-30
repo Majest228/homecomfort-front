@@ -23,6 +23,8 @@ const Products = ({ title, products }: any) => {
           {products.slice(0, 3).map((product: IProduct) => (
             <ProductCard
               product={product}
+              count={product.count}
+              description={product.description}
               favorite={favorite.some((item: any) => item.id == product.id)}
               basket={basket.some((item: any) => item.id == product.id)}
               compare={compare.some((item: any) => item.id == product.id)}

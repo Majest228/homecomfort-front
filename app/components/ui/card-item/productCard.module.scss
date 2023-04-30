@@ -90,8 +90,14 @@
 
       &__price {
         display: flex;
-        align-items: flex-end;
-
+        align-items: center;
+        &__count {
+          margin-left: 10px;
+          font-weight: 500;
+          font-size: 16px;
+          line-height: 130%;
+          color: #1a1a1a;
+        }
         &__discount {
           font-weight: 600;
           font-size: 24px;

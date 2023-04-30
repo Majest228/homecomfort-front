@@ -140,6 +140,7 @@ const ProductBody = ({
                 }
               >
                 <p>{product.price}тг</p>
+                <p>Кол-во: {product.count}</p>
               </div>
               <div
                 className={
