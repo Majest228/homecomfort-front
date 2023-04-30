@@ -14,30 +14,49 @@
       padding: 0;
       font-style: normal;
       font-weight: 500;
-      font-size: 24px;
+      font-size: 16px;
       line-height: 130%;
-      color: #0e0eeb;
+      color: #005bcc;
     }
     &__content {
+      &__block {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        p {
+          margin-left: 10px;
+        }
+      }
+      &__back {
+        display: block;
+        margin-top: 10px;
+        text-decoration: none;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 130%;
+        color: #005bcc;
+      }
       &__title {
         font-style: normal;
         font-weight: 500;
-        font-size: 46px;
+        font-size: 32px;
         line-height: 130%;
         color: #1a1a1a;
       }
       &__count {
         font-style: normal;
         font-weight: 500;
-        font-size: 26px;
+        font-size: 16px;
         line-height: 130%;
         color: #1a1a1a;
       }
       &__items {
+        margin-top: 10px;
         display: grid;
         grid-template-columns: repeat(auto-fill, 380px);
         row-gap: 20px;
-        column-gap: 20px;
+        column-gap: 60px;
 
         &__item {
           padding: 10px 0;
@@ -75,6 +94,7 @@
           &__buttons {
             margin-top: 10px;
             &__update {
+              padding: 0;
               background: none;
               border: none;
               font-style: normal;
@@ -101,11 +121,15 @@
   }
 
   &__content {
-    padding: 0;
+    display: flex;
+    flex-direction: column;
 
     a {
+      padding-top: 10px;
+      padding-bottom: 10px;
       padding-right: 20px;
       text-decoration: none;
+      color: #005bcc;
     }
   }
 }

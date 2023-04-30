@@ -6,6 +6,7 @@ import { useGetMeQuery } from "@/app/store/user/user.api"
 import Field from "../../ui/field/Field"
 import { useForm } from "react-hook-form"
 import Cookies from "js-cookie"
+import Link from "next/link"
 const ProfilePage = () => {
   const [typetest, setType] = useState(false)
 
@@ -153,6 +154,16 @@ const ProfilePage = () => {
             </button>
           )}
         </div>
+        {isLoading ? (
+          ""
+        ) : data.isAdmin ? (
+          <Link className={styles.ProfilePage__link} href='/admin'>
+            Админ панель
+          </Link>
+        ) : (
+          ""
+        )}
+        {/*  */}
       </div>
     </div>
   )

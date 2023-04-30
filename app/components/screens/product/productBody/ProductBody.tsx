@@ -62,6 +62,7 @@ const ProductBody = ({
                   <a>Артикул:</a> {isLoading ? "" : product.articul}
                 </p>
               </div>
+
               <div
                 className={
                   styles.ProductBody__content__right__content__top__right
@@ -90,6 +91,9 @@ const ProductBody = ({
                   <Favorite fillInner={getFavorite ? "red" : "none"} />
                 </div>
               </div>
+            </div>
+            <div className={styles.ProductBody__content__title}>
+              <p>{product.title}</p>
             </div>
             <div
               className={styles.ProductBody__content__right__content__middle}
@@ -132,7 +136,11 @@ const ProductBody = ({
                   styles.ProductBody__content__right__content__bottom__status
                 }
               >
-                <p>Нет в наличии. Срок ожидания товара до 3-х мес.</p>
+                {product.count == 0 ? (
+                  <p>Нет в наличии. Срок ожидания товара до 3-х мес.</p>
+                ) : (
+                  <p>Кол-во: {product.count}</p>
+                )}
               </div>
               <div
                 className={
@@ -140,7 +148,6 @@ const ProductBody = ({
                 }
               >
                 <p>{product.price}тг</p>
-                <p>Кол-во: {product.count}</p>
               </div>
               <div
                 className={

@@ -6,6 +6,7 @@ import styles from "../Admin.module.scss"
 import { useState } from "react"
 import AdminModal from "@/app/components/ui/admin/modal/AdminModal"
 import { IUser } from "@/app/services/user/user.interface"
+import Link from "next/link"
 
 const AdminUsers = () => {
   const result = useGetAllQuery("")
@@ -23,12 +24,17 @@ const AdminUsers = () => {
     <div className={styles.admin__users}>
       <div className={styles.admin__container}>
         <div className={styles.admin__users__content}>
-          <h3 className={styles.admin__users__content__title}>
-            Админ панель - Пользователи
-          </h3>
-          <p className={styles.admin__users__content__count}>
-            Количество пользователей - {isLoading ? 0 : data.length}
-          </p>
+          <div className={styles.admin__users__content__block}>
+            <h3 className={styles.admin__users__content__title}>
+              Админ панель - Пользователи
+            </h3>
+            <p className={styles.admin__users__content__count}>
+              Количество пользователей - {isLoading ? 0 : data.length}
+            </p>
+          </div>
+          <Link className={styles.admin__users__content__back} href='/admin'>
+            Вернуться к выбору
+          </Link>
           <div className={styles.admin__users__content__items}>
             {isLoading
               ? []
@@ -75,7 +81,7 @@ const AdminUsers = () => {
                           styles.admin__users__content__items__item__buttons__update
                         }
                       >
-                        Update
+                        Редактировать
                       </button>
                       <button
                         className={

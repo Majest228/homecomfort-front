@@ -6,6 +6,4 @@ const OrderingPage: NextPageAuth = () => {
   return <Ordering />
 }
 
-OrderingPage.isOnlyUser = true
-
 export default OrderingPage

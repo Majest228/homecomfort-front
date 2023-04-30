@@ -1,7 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { login, register } from "./user.actions"
 import { removeTokensStorage } from "../auth/auth.helper"
+import { toast } from "react-toastify"
 
+const regError = () => {
+  toast.error("Произошла ошибка", {
+    position: toast.POSITION.BOTTOM_RIGHT,
+  })
+}
 const initialState = {
   user:
     typeof window !== "undefined"
@@ -28,7 +34,6 @@ export const userSlice = createSlice({
       })
       .addCase(register.fulfilled, (state, { payload }) => {
         state.isLoading = false
-        state.user = payload
       })
       .addCase(register.rejected, (state) => {
         state.isLoading = false

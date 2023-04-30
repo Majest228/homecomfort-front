@@ -8,8 +8,7 @@ import Cookies from "js-cookie"
 import { useAuth } from "@/app/hook/useAuth"
 import Link from "next/link"
 import { clearBasket, setOrderId } from "@/app/store/basket/basket.slice"
-import axios from "axios"
-import { IProduct } from "@/app/services/product/product.interface"
+import { toast } from "react-toastify"
 
 const OrderingItem = dynamic(() => import("./orderingItem/orderingItem"), {
   ssr: false,
@@ -19,6 +18,12 @@ const Ordering = () => {
   const { basket, orderId } = useAppSelector((state) => state.basket)
   const [status, setStatus] = useState(false)
   console.log(basket)
+  const notify = () => {
+    toast.error("Пройдите авторизацию для оформления заказа", {
+      position: toast.POSITION.BOTTOM_RIGHT,
+    })
+  }
+
   const { user } = useAuth()
   const dispatch = useAppDispatch()
   const { data, isLoading } = useGetMeQuery("")
@@ -46,46 +51,50 @@ const Ordering = () => {
   //create order
 
   const createOrder = async () => {
-    await apiAxios
-      .post(
-        "order/create",
-        { id: user.id },
-        {
-          headers: {
-            Authorization: `Bearer ${Cookies.get("accessToken")}`,
-          },
-        }
-      )
-      .then((res) => {
-        dispatch(setOrderId(res.data.id))
-        basket.forEach((item: any) =>
-          apiAxios.post(
-            `order/orderitem/${res.data.id}`,
-            {
-              productId: item.id,
-              count: item.count,
-            },
-            {
-              headers: {
-                Authorization: `Bearer ${Cookies.get("accessToken")}`,
-              },
-            }
-          )
-        )
-      })
-      .then((res) => {
-        apiAxios.patch(
-          `order/update-status/${Cookies.get("orderId")}`,
-          {},
-          {
-            headers: {
-              Authorization: `Bearer ${Cookies.get("accessToken")}`,
-            },
-          }
-        )
-        dispatch(clearBasket())
-        setStatus(true)
-      })
+    {
+      user
+        ? await apiAxios
+            .post(
+              "order/create",
+              { id: user.id },
+              {
+                headers: {
+                  Authorization: `Bearer ${Cookies.get("accessToken")}`,
+                },
+              }
+            )
+            .then((res) => {
+              dispatch(setOrderId(res.data.id))
+              basket.forEach((item: any) =>
+                apiAxios.post(
+                  `order/orderitem/${res.data.id}`,
+                  {
+                    productId: item.id,
+                    count: item.count,
+                  },
+                  {
+                    headers: {
+                      Authorization: `Bearer ${Cookies.get("accessToken")}`,
+                    },
+                  }
+                )
+              )
+            })
+            .then((res) => {
+              apiAxios.patch(
+                `order/update-status/${Cookies.get("orderId")}`,
+                {},
+                {
+                  headers: {
+                    Authorization: `Bearer ${Cookies.get("accessToken")}`,
+                  },
+                }
+              )
+              dispatch(clearBasket())
+              setStatus(true)
+            })
+        : notify()
+    }
   }
 
   //
@@ -119,16 +128,6 @@ const Ordering = () => {
               >
                 {isLoading ? "" : <p>{data?.phone}</p>}
               </div>
-              {/*        <div
-                className={
-                  styles.Ordering__container__content__left__form__input
-                }
-              >
-                <input
-                  type='text'
-                  placeholder='Введите город, улицу, номер дома и квартиру'
-                />
-              </div>*/}
               <div
                 className={
                   styles.Ordering__container__content__left__form__submit

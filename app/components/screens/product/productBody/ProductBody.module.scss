@@ -3,6 +3,13 @@
   &__content {
     display: flex;
     justify-content: space-between;
+    &__title {
+      margin-top: 10px;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 130%;
+      color: #020202;
+    }
     &__left {
       display: flex;
       &__main {
@@ -41,7 +48,8 @@
           }
         }
         &__middle {
-          margin-top: 40px;
+          margin: 20px 0;
+
           &__description {
             p {
               font-weight: 500;
@@ -51,6 +59,7 @@
             }
           }
           &__stars {
+            margin-top: 10px;
             display: flex;
             &__star {
               margin-right: 12px;
@@ -65,7 +74,7 @@
           }
         }
         &__bottom {
-          margin-top: 30px;
+          margin-top: 10px;
           &__status {
             font-weight: 400;
             font-size: 16px;

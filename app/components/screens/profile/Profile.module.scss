@@ -1,6 +1,18 @@
 .ProfilePage {
   margin-top: 40px;
   margin-bottom: 40px;
+  &__link {
+    text-decoration: none;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 130%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    color: #005bcc;
+  }
   &__change {
     margin-top: 20px;
     font-style: normal;

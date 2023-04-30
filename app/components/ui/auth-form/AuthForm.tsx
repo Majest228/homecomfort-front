@@ -7,6 +7,7 @@ import { SubmitHandler, useForm } from "react-hook-form"
 import { validEmail } from "./auth.valid"
 import LoginIco from "../svg/login"
 import { useAction } from "@/app/hook/useAction"
+import { toast } from "react-toastify"
 
 const AuthForm = (str: any) => {
   const [type, setType] = useState("login")

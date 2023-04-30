@@ -8,6 +8,7 @@ import CreateProduct from "@/app/components/ui/create-product/CreateProduct"
 import UpdateProducts from "@/app/components/ui/create-product/UpdateProducts"
 import ProductCard from "@/app/components/ui/card-item/productCard"
 import { IProduct } from "@/app/services/product/product.interface"
+import Link from "next/link"
 
 const AdminProducts = () => {
   const result = useGetAllProdutsQuery("")
@@ -28,12 +29,17 @@ const AdminProducts = () => {
     <div className={styles.admin__users}>
       <div className={styles.admin__container}>
         <div className={styles.admin__users__content}>
-          <h3 className={styles.admin__users__content__title}>
-            Админ панель - Товары
-          </h3>
-          <p className={styles.admin__users__content__count}>
-            Количество товаров - {isLoading ? 0 : data.length}
-          </p>
+          <div className={styles.admin__users__content__block}>
+            <h3 className={styles.admin__users__content__title}>
+              Админ панель - Товары
+            </h3>
+            <p className={styles.admin__users__content__count}>
+              Количество товаров - {isLoading ? 0 : data.length}
+            </p>
+          </div>
+          <Link className={styles.admin__users__content__back} href='/admin'>
+            Вернуться к выбору
+          </Link>
           <button
             onClick={() => setIsShowCreate(true)}
             className={styles.admin__users__create}
@@ -74,7 +80,7 @@ const AdminProducts = () => {
                           styles.admin__users__content__items__item__buttons__update
                         }
                       >
-                        Update
+                        Редактировать
                       </button>
                       <button
                         className={
