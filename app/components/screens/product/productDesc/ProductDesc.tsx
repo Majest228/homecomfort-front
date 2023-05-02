@@ -11,7 +11,7 @@ const ProductDesc = ({ product }: any) => {
             <p>Характеристики</p>
           </div>
           <div className={styles.ProductDesc__content__characteristic__table}>
-            <ProductColumn name={"размер"} value={product.size || "Нет"} />
+            <ProductColumn name={"Размер"} value={product.size || "Нет"} />
             <ProductColumn name={"Цена"} value={`${product.price}тг`} />
             <ProductColumn
               name={"Со скидкой"}

@@ -88,7 +88,7 @@ const CreateProduct = ({ result, setIsShowCreate }: any) => {
                   placeholder='Ссылка'
                   onChange={(e) => setSlug(e.target.value)}
                 />
-                <label htmlFor=''>Ссыылка</label>
+                <label htmlFor=''>Ссылка</label>
               </div>
             </div>
           </div>
