@@ -65,6 +65,7 @@ const AdminProducts = () => {
                       price={item.price}
                       description={item.description}
                       priceWithDiscount={item.priceWithDiscount}
+                      productPath={item.productPath}
                     />
                     <div
                       className={

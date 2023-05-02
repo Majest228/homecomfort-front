@@ -43,7 +43,9 @@ const Header = () => {
             </Link>
           </div>
           <button className={styles.header__content__catalog}>
-            <CatalogIco />
+            <Link href={"catalog"}>
+              <CatalogIco />
+            </Link>
           </button>
           <div className={styles.header__content__search}>
             <input

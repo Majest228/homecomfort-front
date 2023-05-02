@@ -131,6 +131,7 @@ const Ordering = () => {
                   styles.Ordering__container__content__left__form__input
                 }
               >
+                <h2>Номер телефона:</h2>
                 {isLoading ? "" : <p>{data?.phone}</p>}
               </div>
               <div
