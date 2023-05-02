@@ -46,6 +46,7 @@ const Compare = () => {
                     selectedProducts[item.id]?.priceWithDiscount
                   }
                   product={item}
+                  productPath={selectedProducts[item.id]?.productPath}
                   price={selectedProducts[item.id]?.price}
                   title={item.title}
                   favorite={favorite.some(

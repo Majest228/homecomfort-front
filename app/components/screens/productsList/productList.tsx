@@ -123,6 +123,7 @@ const ProductList = () => {
                     description={product.description}
                     priceWithDiscount={product.priceWithDiscount}
                     product={product}
+                    productPath={product.productPath}
                   />
                 </div>
               ))}

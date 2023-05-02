@@ -107,6 +107,10 @@ const Ordering = () => {
             <div className={styles.Ordering__container__content__left__title}>
               <h3>Детали оплаты</h3>
             </div>
+            <div className={styles.Ordering__container__content__left__title}>
+              <h2>Адрес:</h2>
+              <p>{data?.address}</p>
+            </div>
             <form
               onSubmit={(e) => {
                 e.preventDefault()
@@ -119,6 +123,7 @@ const Ordering = () => {
                   styles.Ordering__container__content__left__form__input
                 }
               >
+                <h2>Заказчик:</h2>
                 {isLoading ? "" : <p>{data?.name}</p>}
               </div>
               <div
